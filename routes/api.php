@@ -4,7 +4,10 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\IncomeEntryController;
 use App\Http\Controllers\Api\AssetEntryController;
+use App\Http\Controllers\Api\V1\JewelleryController;
+use App\Http\Controllers\Api\V1\MotorVehicleController;
 use App\Http\Controllers\Api\V1\FinancialAssetController;
+use App\Http\Controllers\Api\V1\FurnitureEquipmentController;
 use App\Http\Controllers\Api\V1\AssetEntries\AgriNonAgriLandController;
 
 // Auth routes with 'auth:api' middleware applied where necessary
@@ -40,4 +43,16 @@ Route::middleware('api')->group(function () {
     Route::get('/financial-assets', [FinancialAssetController::class, 'index']);
     Route::post('/financial-assets', [FinancialAssetController::class, 'storeOrUpdate']);
     Route::delete('/financial-assets/{id}', [FinancialAssetController::class, 'destroy']);
+
+    Route::get('/motor-vehicles', [MotorVehicleController::class, 'index']);
+    Route::post('/motor-vehicles', [MotorVehicleController::class, 'storeOrUpdate']);
+    Route::delete('/motor-vehicles/{id}', [MotorVehicleController::class, 'destroy']);
+
+    Route::get('/furniture-equipments', [FurnitureEquipmentController::class, 'index']);
+    Route::post('/furniture-equipments', [FurnitureEquipmentController::class, 'storeOrUpdate']);
+    Route::delete('/furniture-equipments/{id}', [FurnitureEquipmentController::class, 'destroy']);
+
+    Route::get('/jewelleries', [JewelleryController::class, 'index']);
+    Route::post('/jewelleries', [JewelleryController::class, 'storeOrUpdate']);
+    Route::delete('/jewelleries/{id}', [JewelleryController::class, 'destroy']);
 });
