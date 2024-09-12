@@ -14,6 +14,10 @@ use App\Repositories\FurnitureEquipmentRepository;
 use App\Repositories\Interfaces\FurnitureEquipmentRepositoryInterface;
 use App\Repositories\JewelleryRepository;
 use App\Repositories\Interfaces\JewelleryRepositoryInterface;
+use App\Repositories\CashAndFundRepository;
+use App\Repositories\Interfaces\CashAndFundRepositoryInterface;
+use App\Repositories\SelfAndFamilyExpenseRepository;
+use App\Repositories\Interfaces\SelfAndFamilyExpenseRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -54,6 +58,14 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             JewelleryRepositoryInterface::class,
             JewelleryRepository::class
+        );
+        $this->app->bind(
+            CashAndFundRepositoryInterface::class,
+            CashAndFundRepository::class
+        );
+        $this->app->bind(
+            SelfAndFamilyExpenseRepositoryInterface::class,
+            SelfAndFamilyExpenseRepository::class
         );
     }
 }
