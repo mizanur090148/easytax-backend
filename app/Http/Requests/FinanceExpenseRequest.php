@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SelfAndFamilyExpenseRequest extends FormRequest
+class FinanceExpenseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,22 +23,18 @@ class SelfAndFamilyExpenseRequest extends FormRequest
     {
         return [
             'user_id' => ['required'],
-            'food_expenses.*' => [
+            'institutional_loan' => [
                 'nullable',
                 'numeric',
             ],
-            'clothing_expenses.*' => [
+            'non_institutional_loan' => [
                 'nullable',
                 'numeric',
             ],
-            'personal_expenses.*' => [
+            'other_loan' => [
                 'nullable',
                 'numeric',
-            ],
-            'family_expenses.*' => [
-                'nullable',
-                'numeric',
-            ],
+            ]
         ];
     }
 }

@@ -16,8 +16,16 @@ use App\Repositories\JewelleryRepository;
 use App\Repositories\Interfaces\JewelleryRepositoryInterface;
 use App\Repositories\CashAndFundRepository;
 use App\Repositories\Interfaces\CashAndFundRepositoryInterface;
-use App\Repositories\SelfAndFamilyExpenseRepository;
-use App\Repositories\Interfaces\SelfAndFamilyExpenseRepositoryInterface;
+use App\Repositories\SelfFamilyExpenseRepository;
+use App\Repositories\Interfaces\SelfFamilyExpenseRepositoryInterface;
+use App\Repositories\HousingExpenseRepository;
+use App\Repositories\Interfaces\HousingExpenseRepositoryInterface;
+use App\Repositories\UtilityExpenseRepository;
+use App\Repositories\Interfaces\UtilityExpenseRepositoryInterface;
+use App\Repositories\EducationExpenseRepository;
+use App\Repositories\Interfaces\EducationExpenseRepositoryInterface;
+use App\Repositories\FinanceExpenseRepository;
+use App\Repositories\Interfaces\FinanceExpenseRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -64,8 +72,24 @@ class RepositoryServiceProvider extends ServiceProvider
             CashAndFundRepository::class
         );
         $this->app->bind(
-            SelfAndFamilyExpenseRepositoryInterface::class,
-            SelfAndFamilyExpenseRepository::class
+            SelfFamilyExpenseRepositoryInterface::class,
+            SelfFamilyExpenseRepository::class
+        );
+        $this->app->bind(
+            HousingExpenseRepositoryInterface::class,
+            HousingExpenseRepository::class
+        );
+        $this->app->bind(
+            UtilityExpenseRepositoryInterface::class,
+            UtilityExpenseRepository::class
+        );
+        $this->app->bind(
+            EducationExpenseRepositoryInterface::class,
+            EducationExpenseRepository::class
+        );
+        $this->app->bind(
+            FinanceExpenseRepositoryInterface::class,
+            FinanceExpenseRepository::class
         );
     }
 }

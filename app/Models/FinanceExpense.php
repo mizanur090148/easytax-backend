@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SelfAndFamilyExpense extends Model
+class FinanceExpense extends Model
 {
-	use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
-        'food_expenses',
-        'clothing_expenses',
-        'personal_expenses',
-        'family_expenses',
+        'institutional_loan',
+        'non_institutional_loan',
+        'other_loan',
         'year',
         'past_return'
     ];

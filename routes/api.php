@@ -8,6 +8,11 @@ use App\Http\Controllers\Api\V1\JewelleryController;
 use App\Http\Controllers\Api\V1\MotorVehicleController;
 use App\Http\Controllers\Api\V1\FinancialAssetController;
 use App\Http\Controllers\Api\V1\FurnitureEquipmentController;
+use App\Http\Controllers\Api\V1\SelfFamilyExpenseController;
+use App\Http\Controllers\Api\V1\HousingExpenseController;
+use App\Http\Controllers\Api\V1\UtilityExpenseController;
+use App\Http\Controllers\Api\V1\FinanceExpenseController;
+use App\Http\Controllers\Api\V1\EducationExpenseController;
 use App\Http\Controllers\Api\V1\AssetEntries\AgriNonAgriLandController;
 
 // Auth routes with 'auth:api' middleware applied where necessary
@@ -55,4 +60,25 @@ Route::middleware('api')->group(function () {
     Route::get('/jewelleries', [JewelleryController::class, 'index']);
     Route::post('/jewelleries', [JewelleryController::class, 'storeOrUpdate']);
     Route::delete('/jewelleries/{id}', [JewelleryController::class, 'destroy']);
+
+
+    Route::get('/self-family-expenses', [SelfFamilyExpenseController::class, 'index']);
+    Route::post('/self-family-expenses', [SelfFamilyExpenseController::class, 'store']);
+    Route::patch('/self-family-expenses/{id}', [SelfFamilyExpenseController::class, 'update']);
+
+    Route::get('/housing-expenses', [HousingExpenseController::class, 'index']);
+    Route::post('/housing-expenses', [HousingExpenseController::class, 'store']);
+    Route::patch('/housing-expenses/{id}', [HousingExpenseController::class, 'update']);
+
+    Route::get('/utility-expenses',  [UtilityExpenseController::class, 'index']);
+    Route::post('/utility-expenses',  [UtilityExpenseController::class, 'store']);
+    Route::patch('/utility-expenses/{id}',  [UtilityExpenseController::class, 'update']);
+
+    Route::get('/education-expenses',  [EducationExpenseController::class, 'index']);
+    Route::post('/education-expenses',  [EducationExpenseController::class, 'store']);
+    Route::patch('/education-expenses/{id}',  [EducationExpenseController::class, 'update']);
+
+    Route::get('/finance-expenses',  [FinanceExpenseController::class, 'index']);
+    Route::post('/finance-expenses',  [FinanceExpenseController::class, 'store']);
+    Route::patch('/finance-expenses/{id}',  [FinanceExpenseController::class, 'update']);
 });

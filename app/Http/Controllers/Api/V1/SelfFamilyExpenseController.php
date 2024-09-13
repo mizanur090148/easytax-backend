@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\SelfAndFamilyExpenseRepositoryInterface;
-use App\Http\Requests\SelfAndFamilyExpenseRequest;
+use App\Repositories\Interfaces\SelfFamilyExpenseRepositoryInterface;
+use App\Http\Requests\SelfFamilyExpenseRequest;
 use Illuminate\Http\JsonResponse;
 use DB, JsonResponse4;
 
-class SelfAndFamilyExpenseController extends Controller
+class SelfFamilyExpenseController extends Controller
 {
     /**
      * @varSelfAndFamilyExpenseRepositoryInterface
@@ -16,10 +16,10 @@ class SelfAndFamilyExpenseController extends Controller
     protected $repository;
 
     /**
-     *SelfAndFamilyExpenseController constructor.
-     * @paramSelfAndFamilyExpenseRepositoryInterface $repository
+     * constructor.
+     * @param SelfFamilyExpenseRepositoryInterface $repository
      */
-    public function __construct(SelfAndFamilyExpenseRepositoryInterface $repository)
+    public function __construct(SelfFamilyExpenseRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -40,33 +40,27 @@ class SelfAndFamilyExpenseController extends Controller
     }
 
     /**
-     * @paramSelfAndFamilyExpenseRequest $request
+     * @paramSelfFamilyExpenseRequest $request
      * @return JsonResponse|JsonResponse4
      */
-    // public function store(SelfAndFamilyExpenseRequest $request)
-    // {
-    //     try {
-    //         $inputData = [];
-    //         foreach ($request->all() as $data) {
-    //             $inputData[] = $data;
-    //         }
-    //         $result = $this->repository->storeAll($inputData);
-    //         return responseCreated($result);
-    //     } catch (Exception $e) {
-    //         return responseCantProcess($e);
-    //     }
-    // }
-
-    /**
-     * @paramSelfAndFamilyExpenseRequest $request
-     * @return \JsonResponse
-     */
-    public function storeOrUpdate(SelfAndFamilyExpenseRequest $request)
+    public function store(SelfFamilyExpenseRequest $request)
     {
         try {
-            DB::beginTransaction();
-            $result = $this->repository->storeOrUpdate($request->all());
-            DB::commit();
+            $result = $this->repository->store($request->all());
+            return responseCreated($result);
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
+
+    /**
+     * @paramSelfFamilyExpenseRequest $request
+     * @return \JsonResponse
+     */
+    public function update($id, SelfFamilyExpenseRequest $request)
+    {
+        try {
+            $result = $this->repository->update($id, $request->all());
             return responsePatched($result);
         } catch (Exception $e) {
             DB::rollBack(); 
