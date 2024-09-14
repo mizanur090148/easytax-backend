@@ -26,6 +26,10 @@ use App\Repositories\EducationExpenseRepository;
 use App\Repositories\Interfaces\EducationExpenseRepositoryInterface;
 use App\Repositories\FinanceExpenseRepository;
 use App\Repositories\Interfaces\FinanceExpenseRepositoryInterface;
+use App\Repositories\TransportExpenseRepository;
+use App\Repositories\Interfaces\TransportExpenseRepositoryInterface;
+use App\Repositories\VacationFestivalExpenseRepository;
+use App\Repositories\Interfaces\VacationFestivalExpenseRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -90,6 +94,14 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             FinanceExpenseRepositoryInterface::class,
             FinanceExpenseRepository::class
+        );
+        $this->app->bind(
+            TransportExpenseRepositoryInterface::class,
+            TransportExpenseRepository::class
+        );
+        $this->app->bind(
+            VacationFestivalExpenseRepositoryInterface::class,
+            VacationFestivalExpenseRepository::class
         );
     }
 }

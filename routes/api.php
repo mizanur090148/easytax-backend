@@ -12,7 +12,9 @@ use App\Http\Controllers\Api\V1\SelfFamilyExpenseController;
 use App\Http\Controllers\Api\V1\HousingExpenseController;
 use App\Http\Controllers\Api\V1\UtilityExpenseController;
 use App\Http\Controllers\Api\V1\FinanceExpenseController;
+use App\Http\Controllers\Api\V1\TransportExpenseController;
 use App\Http\Controllers\Api\V1\EducationExpenseController;
+use App\Http\Controllers\Api\V1\VacationFestivalExpenseController;
 use App\Http\Controllers\Api\V1\AssetEntries\AgriNonAgriLandController;
 
 // Auth routes with 'auth:api' middleware applied where necessary
@@ -81,4 +83,12 @@ Route::middleware('api')->group(function () {
     Route::get('/finance-expenses',  [FinanceExpenseController::class, 'index']);
     Route::post('/finance-expenses',  [FinanceExpenseController::class, 'store']);
     Route::patch('/finance-expenses/{id}',  [FinanceExpenseController::class, 'update']);
+
+    Route::get('/transport-expenses',  [TransportExpenseController::class, 'index']);
+    Route::post('/transport-expenses',  [TransportExpenseController::class, 'store']);
+    Route::patch('/transport-expenses/{id}',  [TransportExpenseController::class, 'update']);
+
+    Route::get('/vacation-festival-expenses',  [VacationFestivalExpenseController::class, 'index']);
+    Route::post('/vacation-festival-expenses',  [VacationFestivalExpenseController::class, 'store']);
+    Route::patch('/vacation-festival-expenses/{id}',  [VacationFestivalExpenseController::class, 'update']);
 });
