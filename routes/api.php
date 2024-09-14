@@ -35,7 +35,7 @@ Route::middleware('api')->group(function () {
     Route::post('/income-entries', [IncomeEntryController::class, 'store']);
     Route::patch('/income-entries/{id}', [IncomeEntryController::class, 'update']);
     Route::delete('/income-entries/{id}', [IncomeEntryController::class, 'destroy']);
-    
+
     // Asset entries
     // Route::get('/assets-entries', [\App\Http\Controllers\Api\AssetEntryController::class, 'index'])->name('asset-entries');
     // Route::post('/assets-entries', [\App\Http\Controllers\Api\AssetEntryController::class, 'store'])->name('asset-entries');
@@ -83,6 +83,11 @@ Route::middleware('api')->group(function () {
     Route::get('/finance-expenses',  [FinanceExpenseController::class, 'index']);
     Route::post('/finance-expenses',  [FinanceExpenseController::class, 'store']);
     Route::patch('/finance-expenses/{id}',  [FinanceExpenseController::class, 'update']);
+
+    //liabilities entry
+    Route::get('/institutional-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\InstitutionalLiabilitiesController::class, 'index']);
+    Route::post('/institutional-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\InstitutionalLiabilitiesController::class, 'storeOrUpdate']);
+    Route::delete('/institutional-liabilities/{id}', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\InstitutionalLiabilitiesController::class, 'destroy']);
 
     Route::get('/transport-expenses',  [TransportExpenseController::class, 'index']);
     Route::post('/transport-expenses',  [TransportExpenseController::class, 'store']);

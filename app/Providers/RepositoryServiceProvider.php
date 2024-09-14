@@ -3,6 +3,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\InstitutionalLiabilitiesRepository;
+use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
 use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
@@ -102,6 +104,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             VacationFestivalExpenseRepositoryInterface::class,
             VacationFestivalExpenseRepository::class
+        );
+        $this->app->bind(
+            InstitutionalLiabilitiesRepositoryInterface::class,
+            InstitutionalLiabilitiesRepository::class
         );
     }
 }
