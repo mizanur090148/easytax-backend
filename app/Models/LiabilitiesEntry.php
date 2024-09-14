@@ -11,6 +11,7 @@ class LiabilitiesEntry extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        "user_id",
         "type_of_liabilities_entry",
         "bank_fi_name",
         "account_no",
