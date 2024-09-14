@@ -4,9 +4,10 @@
 namespace App\Repositories;
 
 use App\Models\LiabilitiesEntry;
+use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
 use App\Repositories\Interfaces\MotorVehicleRepositoryInterface;
 
-class InstitutionalLiabilitiesRepository extends BaseRepository implements MotorVehicleRepositoryInterface
+class InstitutionalLiabilitiesRepository extends BaseRepository implements InstitutionalLiabilitiesRepositoryInterface
 {
 
     public function __construct(LiabilitiesEntry $model)

@@ -8,6 +8,7 @@ use App\Http\Requests\InstitutionalLiabilitiesRequest;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
 use DB;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use JsonResponse4;
 
 class InstitutionalLiabilitiesController extends Controller
@@ -35,7 +36,7 @@ class InstitutionalLiabilitiesController extends Controller
 
 
 
-    public function storeOrUpdate(InstitutionalLiabilitiesRequest $request)
+    public function storeOrUpdate(Request $request)
     {
         try {
             DB::beginTransaction();
