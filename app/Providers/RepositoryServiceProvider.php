@@ -5,6 +5,8 @@ namespace App\Providers;
 
 use App\Repositories\InstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
+use App\Repositories\NonInstitutionalLiabilitiesRepository;
+use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
 use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
@@ -108,6 +110,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             InstitutionalLiabilitiesRepositoryInterface::class,
             InstitutionalLiabilitiesRepository::class
+        );
+        $this->app->bind(
+            NonInstitutionalLiabilitiesRepositoryInterface::class,
+            NonInstitutionalLiabilitiesRepository::class
         );
     }
 }

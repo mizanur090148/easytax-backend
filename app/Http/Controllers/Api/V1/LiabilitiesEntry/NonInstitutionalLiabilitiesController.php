@@ -4,19 +4,17 @@ namespace App\Http\Controllers\Api\V1\LiabilitiesEntry;
 
 use App\Http\Controllers\Api\V1\Exception;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\InstitutionalLiabilitiesRequest;
-use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
+use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
 use DB;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use JsonResponse4;
 
-class InstitutionalLiabilitiesController extends Controller
+class NonInstitutionalLiabilitiesController extends Controller
 {
 
     protected $repository;
 
-    public function __construct(InstitutionalLiabilitiesRepositoryInterface $repository)
+    public function __construct(NonInstitutionalLiabilitiesRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -27,7 +25,7 @@ class InstitutionalLiabilitiesController extends Controller
         try {
             $where = [
                 'user_id' => auth()->id(),
-                'type_of_liabilities_entry' => 'institutional'
+                'type_of_liabilities_entry' => 'non-institutional'
             ];
             return responseSuccess($this->repository->all($where));
         } catch (Exception $e) {
