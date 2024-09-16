@@ -93,6 +93,10 @@ Route::middleware('api')->group(function () {
     Route::post('/non-institutional-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\NonInstitutionalLiabilitiesController::class, 'storeOrUpdate']);
     Route::delete('/non-institutional-liabilities/{id}', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\NonInstitutionalLiabilitiesController::class, 'destroy']);
 
+    Route::get('/other-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\OtherLiabilitiesController::class, 'index']);
+    Route::post('/other-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\OtherLiabilitiesController::class, 'storeOrUpdate']);
+    Route::delete('/other-liabilities/{id}', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\OtherLiabilitiesController::class, 'destroy']);
+
 
     Route::get('/transport-expenses',  [TransportExpenseController::class, 'index']);
     Route::post('/transport-expenses',  [TransportExpenseController::class, 'store']);

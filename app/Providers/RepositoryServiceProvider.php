@@ -7,6 +7,11 @@ use App\Repositories\InstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
+
+use App\Repositories\OtherLiabilitiesRepository;
+use App\Repositories\Interfaces\OtherLiabilitiesRepositoryInterface;
+
+
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
 use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
@@ -114,6 +119,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             NonInstitutionalLiabilitiesRepositoryInterface::class,
             NonInstitutionalLiabilitiesRepository::class
+        );
+        $this->app->bind(
+            OtherLiabilitiesRepositoryInterface::class,
+            OtherLiabilitiesRepository::class
         );
     }
 }
