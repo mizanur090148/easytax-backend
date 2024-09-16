@@ -5,9 +5,9 @@ namespace App\Repositories;
 
 use App\Models\LiabilitiesEntry;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
-use App\Repositories\Interfaces\MotorVehicleRepositoryInterface;
+use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
 
-class InstitutionalLiabilitiesRepository extends BaseRepository implements InstitutionalLiabilitiesRepositoryInterface
+class NonInstitutionalLiabilitiesRepository extends BaseRepository implements NonInstitutionalLiabilitiesRepositoryInterface
 {
 
     public function __construct(LiabilitiesEntry $model)
@@ -20,7 +20,7 @@ class InstitutionalLiabilitiesRepository extends BaseRepository implements Insti
     {
     	$result = [];
     	foreach ($data as $item) {
-            $item = array_merge($item, ['type_of_liabilities_entry' => 'institutional']);
+            $item = array_merge($item, ['type_of_liabilities_entry' => 'non-institutional']);
             if (!empty($item['id'])) {
 		        $result[] = tap($this->getModel()->where('id', $item['id']))->update($item)->first();
 		    } else {
