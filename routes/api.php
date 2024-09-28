@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\IncomeEntryController;
 use App\Http\Controllers\Api\AssetEntryController;
 use App\Http\Controllers\Api\V1\JewelleryController;
+use App\Http\Controllers\Api\V1\CashAndFundController;
 use App\Http\Controllers\Api\V1\MotorVehicleController;
 use App\Http\Controllers\Api\V1\FinancialAssetController;
 use App\Http\Controllers\Api\V1\FurnitureEquipmentController;
@@ -92,6 +93,10 @@ Route::middleware('api')->group(function () {
     Route::get('/transport-expenses',  [TransportExpenseController::class, 'index']);
     Route::post('/transport-expenses',  [TransportExpenseController::class, 'store']);
     Route::patch('/transport-expenses/{id}',  [TransportExpenseController::class, 'update']);
+
+    Route::get('/cash-and-funds',  [CashAndFundController::class, 'index']);
+    Route::post('/cash-and-funds',  [CashAndFundController::class, 'storeOrUpdate']);
+    Route::delete('/cash-and-funds/{id}', [CashAndFundController::class, 'destroy']);
 
     Route::get('/vacation-festival-expenses',  [VacationFestivalExpenseController::class, 'index']);
     Route::post('/vacation-festival-expenses',  [VacationFestivalExpenseController::class, 'store']);

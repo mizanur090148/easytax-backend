@@ -18,8 +18,9 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->string('ac_type')->nullable();
-            $table->string('fund_type')->nullable();
+            $table->enum('type', ['cash_at_bank', 'other_cash', 'cash_in_hand'])->nullable();
+            $table->string('ac_type', 20)->nullable();
+            $table->string('type_of_fund', 20)->nullable();
             $table->string('account_no', 30)->nullable();
             $table->string('bank_name', 60)->nullable();
             $table->float('closing_balance')->nullable();
