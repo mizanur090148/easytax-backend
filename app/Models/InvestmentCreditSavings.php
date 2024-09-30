@@ -19,6 +19,7 @@ class InvestmentCreditSavings extends Model
         'bank_name',
         'account_no',
         'paid_amount',
+        'allowable_limit',
         'total'
     ];
 }

@@ -105,4 +105,9 @@ Route::middleware('api')->group(function () {
     Route::get('/vacation-festival-expenses',  [VacationFestivalExpenseController::class, 'index']);
     Route::post('/vacation-festival-expenses',  [VacationFestivalExpenseController::class, 'store']);
     Route::patch('/vacation-festival-expenses/{id}',  [VacationFestivalExpenseController::class, 'update']);
+
+    Route::get('/savings-plan',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'index']);
+    Route::post('/savings-plan',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'store']);
+    Route::patch('/savings-plan/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'update']);
+
 });

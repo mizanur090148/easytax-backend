@@ -17,14 +17,15 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->enum('type', ['insurance'])->default('insurance');
+            $table->enum('type', ['insurance', 'deposit'])->default('insurance');
             $table->string('policy_number')->nullable();
             $table->float('insured_amount')->nullable();
             $table->float('current_year_amount')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('account_no')->nullable();
-            $table->float('total')->nullable();
             $table->float('paid_amount')->nullable();
+            $table->float('allowable_limit')->nullable();
+            $table->float('total')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

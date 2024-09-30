@@ -3,17 +3,12 @@
 
 namespace App\Repositories;
 
-use App\Models\FinancialAsset;
-use App\Repositories\Interfaces\FinancialAssetRepositoryInterface;
+use App\Models\InvestmentCreditSavings;
+use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
 
-class SavingsPlanRepository extends BaseRepository implements FinancialAssetRepositoryInterface
+class SavingsPlanRepository extends BaseRepository implements SavingsPlanRepositoryInterface
 {
-
-    /**
-     * AccountRepository constructor.
-     * @param Account $model
-     */
-    public function __construct(FinancialAsset $model)
+    public function __construct(InvestmentCreditSavings $model)
     {
         parent::__construct($model);
     }
