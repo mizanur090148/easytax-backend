@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\CashAndFundRepositoryInterface;
-use App\Models\AssetEntries\CashAndFund;
+use App\Models\CashAndFund;
 
 class CashAndFundRepository extends BaseRepository implements CashAndFundRepositoryInterface
 {

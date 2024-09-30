@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\AssetEntries;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CashAndFundRepositoryInterface;
-use App\Http\Requests\AssetEntries\CashAndFundRequest;
+use App\Http\Requests\CashAndFundRequest;
 use Illuminate\Http\JsonResponse;
 use DB, JsonResponse4;
 
