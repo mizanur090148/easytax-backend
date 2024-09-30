@@ -39,6 +39,8 @@ use App\Repositories\TransportExpenseRepository;
 use App\Repositories\Interfaces\TransportExpenseRepositoryInterface;
 use App\Repositories\VacationFestivalExpenseRepository;
 use App\Repositories\Interfaces\VacationFestivalExpenseRepositoryInterface;
+use App\Repositories\Settings\TypeOfVehicleRepository;
+use App\Repositories\Interfaces\Settings\TypeOfVehicleRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -123,6 +125,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             OtherLiabilitiesRepositoryInterface::class,
             OtherLiabilitiesRepository::class
+        );
+        $this->app->bind(
+            TypeOfVehicleRepositoryInterface::class,
+            TypeOfVehicleRepository::class
         );
     }
 }
