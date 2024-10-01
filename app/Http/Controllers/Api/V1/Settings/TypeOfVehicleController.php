@@ -43,7 +43,7 @@ class TypeOfVehicleController extends Controller
     public function store(TypeOfVehicleRequest $request)
     {
         try {
-            $result = $this->repository->store($request->validated());
+            $result = $this->repository->store($request->all());
             return responseCreated($result);
         } catch (Exception $e) {
             return responseCantProcess($e);
