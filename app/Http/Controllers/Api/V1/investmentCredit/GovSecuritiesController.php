@@ -13,8 +13,6 @@ class GovSecuritiesController extends Controller
 {
 
     protected $repository;
-
-
     public function __construct(GovSecuritiesRepositoryInterface $repository)
     {
         $this->repository = $repository;
