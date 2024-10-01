@@ -3,7 +3,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\GovSecuritiesRepository;
 use App\Repositories\InstitutionalLiabilitiesRepository;
+use App\Repositories\Interfaces\GovSecuritiesRepositoryInterface;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
 use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
@@ -136,5 +138,10 @@ class RepositoryServiceProvider extends ServiceProvider
             TypeOfVehicleRepositoryInterface::class,
             TypeOfVehicleRepository::class
         );
+        $this->app->bind(
+            GovSecuritiesRepositoryInterface::class,
+            GovSecuritiesRepository::class
+        );
+
     }
 }

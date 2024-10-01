@@ -115,6 +115,13 @@ Route::middleware('api')->group(function () {
     Route::get('/savings-plan',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'index']);
     Route::post('/savings-plan',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'store']);
     Route::patch('/savings-plan/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'update']);
+    Route::delete('/savings-plan/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'destroy']);
+
+
+    Route::get('/gov-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'index']);
+    Route::post('/gov-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'store']);
+    Route::patch('/gov-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'update']);
+    Route::delete('/gov-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'destroy']);
 
 });
 
