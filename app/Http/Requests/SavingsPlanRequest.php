@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CashAndFundRequest extends FormRequest
+class SavingsPlanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,24 +21,21 @@ class CashAndFundRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'user_id.*' => ['required'],
             'type.*' => ['required'],
-            'ac_type.*' => ['nullable'],
-            'type_of_fund.*' => [
-                'nullable',
-                'numeric'
-            ],
-            'account_no.*' => [
+            'policy_number.*' => [
                 'nullable',
                 'numeric',
+                'max:30',
             ],
-            'bank_name.*' => [
+            'insured_amount.*' => [
                 'nullable',
-                'string',
-                'max:60',
+                'numeric',
+                'max:30',
             ],
-            'closing_balance.*' => [
+            'current_year_amount.*' => [
                 'nullable',
                 'numeric',
             ],

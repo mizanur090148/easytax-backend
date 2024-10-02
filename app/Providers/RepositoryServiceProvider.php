@@ -3,8 +3,11 @@
 
 namespace App\Providers;
 
+use App\Repositories\GovSecuritiesRepository;
 use App\Repositories\InstitutionalLiabilitiesRepository;
+use App\Repositories\Interfaces\GovSecuritiesRepositoryInterface;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
+use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
 
@@ -12,6 +15,7 @@ use App\Repositories\OtherLiabilitiesRepository;
 use App\Repositories\Interfaces\OtherLiabilitiesRepositoryInterface;
 
 
+use App\Repositories\SavingsPlanRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
 use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
@@ -127,8 +131,17 @@ class RepositoryServiceProvider extends ServiceProvider
             OtherLiabilitiesRepository::class
         );
         $this->app->bind(
+            SavingsPlanRepositoryInterface::class,
+            SavingsPlanRepository::class
+        );
+        $this->app->bind(
             TypeOfVehicleRepositoryInterface::class,
             TypeOfVehicleRepository::class
         );
+        $this->app->bind(
+            GovSecuritiesRepositoryInterface::class,
+            GovSecuritiesRepository::class
+        );
+
     }
 }
