@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Settings;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Rules\UniqueCheck;
-use App\Models\Settings\TypeOfVehicle;
 
-class TypeOfVehicleRequest extends FormRequest
+class ListedSecuritiesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +21,16 @@ class TypeOfVehicleRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            'name' => [
-                'required', 
+            'user_id.*' => ['required'],
+            'type.*' => ['required'],
+            'net_investment.*' => [
+                'nullable',
+                'numeric',
                 'max:30',
-                new UniqueCheck(TypeOfVehicle::class)
-            ]
+            ],
+
         ];
     }
 }

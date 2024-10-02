@@ -7,7 +7,9 @@ use App\Repositories\GovSecuritiesRepository;
 use App\Repositories\InstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\GovSecuritiesRepositoryInterface;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
+use App\Repositories\Interfaces\ListedSecuritiesRepositoryInterface;
 use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
+use App\Repositories\ListedSecuritiesRepository;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
 
@@ -141,6 +143,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             GovSecuritiesRepositoryInterface::class,
             GovSecuritiesRepository::class
+        );
+        $this->app->bind(
+            ListedSecuritiesRepositoryInterface::class,
+            ListedSecuritiesRepository::class
         );
 
     }
