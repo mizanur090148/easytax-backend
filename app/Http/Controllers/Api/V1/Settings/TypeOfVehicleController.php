@@ -52,6 +52,21 @@ class TypeOfVehicleController extends Controller
 
     /**
      * @param $id
+     * @param TypeOfVehicleRequest $request
+     * @return JsonResponse
+     */
+    public function update($id, TypeOfVehicleRequest $request)
+    {
+        try {
+            $result = $this->repository->update($id, $request->validated());
+            return responsePatched($result);
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
+
+    /**
+     * @param $id
      * @return JsonResponse|\JsonResponse
      */
     public function destroy($id)

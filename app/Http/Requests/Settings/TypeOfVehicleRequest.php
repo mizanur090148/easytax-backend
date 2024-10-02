@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Settings;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Rules\UniqueCheck;
+use App\Models\Settings\TypeOfVehicle;
 
 class TypeOfVehicleRequest extends FormRequest
 {
@@ -22,7 +24,11 @@ class TypeOfVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:30']
+            'name' => [
+                'required', 
+                'max:30',
+                new UniqueCheck(TypeOfVehicle::class)
+            ]
         ];
     }
 }

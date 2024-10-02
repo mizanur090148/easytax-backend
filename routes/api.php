@@ -117,7 +117,6 @@ Route::middleware('api')->group(function () {
 ### SETTINGS ROUTE ###
 Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::get('/type-of-vehicles', [TypeOfVehicleController::class, 'index']);
-    Route::get('/type-of-vehicles/{userId}', [TypeOfVehicleController::class, 'show']);
     Route::post('/type-of-vehicles', [TypeOfVehicleController::class, 'store']);
     Route::patch('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'update']);
     Route::delete('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'destroy']);
