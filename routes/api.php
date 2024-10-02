@@ -123,6 +123,12 @@ Route::middleware('api')->group(function () {
     Route::patch('/gov-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'update']);
     Route::delete('/gov-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'destroy']);
 
+
+    Route::get('/listed-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'index']);
+    Route::post('/listed-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'store']);
+    Route::patch('/listed-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'update']);
+    Route::delete('/listed-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'destroy']);
+
 });
 
 
