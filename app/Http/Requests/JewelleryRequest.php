@@ -23,7 +23,7 @@ class JewelleryRequest extends FormRequest
     {
         return [
             'user_id.*' => ['required'],
-            'type_id.*' => ['required'],
+            'type.*' => ['required'],
             'closing_qty.*' => [
                 'nullable',
                 'string',
