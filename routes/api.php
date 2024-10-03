@@ -129,6 +129,11 @@ Route::middleware('api')->group(function () {
     Route::patch('/listed-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'update']);
     Route::delete('/listed-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'destroy']);
 
+    Route::get('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'index']);
+    Route::post('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'store']);
+    Route::patch('/retirement-plans/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'update']);
+    Route::delete('/retirement-plans/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'destroy']);
+
 });
 
 
