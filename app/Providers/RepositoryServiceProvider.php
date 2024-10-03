@@ -8,15 +8,19 @@ use App\Repositories\InstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\GovSecuritiesRepositoryInterface;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
 use App\Repositories\Interfaces\ListedSecuritiesRepositoryInterface;
+use App\Repositories\Interfaces\OtherInvestmentRepositoryInterface;
+use App\Repositories\Interfaces\RetirementPlanRepositoryInterface;
 use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
 use App\Repositories\ListedSecuritiesRepository;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
 
+use App\Repositories\OtherInvestmentRepository;
 use App\Repositories\OtherLiabilitiesRepository;
 use App\Repositories\Interfaces\OtherLiabilitiesRepositoryInterface;
 
 
+use App\Repositories\RetirementPlanRepository;
 use App\Repositories\SavingsPlanRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
@@ -147,6 +151,15 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ListedSecuritiesRepositoryInterface::class,
             ListedSecuritiesRepository::class
+        );
+        $this->app->bind(
+            RetirementPlanRepositoryInterface::class,
+            RetirementPlanRepository::class
+        );
+
+        $this->app->bind(
+            OtherInvestmentRepositoryInterface::class,
+            OtherInvestmentRepository::class
         );
 
     }
