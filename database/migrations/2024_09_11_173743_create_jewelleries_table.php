@@ -19,8 +19,14 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('type', 8);
-            $table->string('closing_qty', 30)->nullable();
-            $table->float('closing_value')->nullable();
+            $table->integer('closing_qty')->nullable();
+            $table->integer('closing_value')->nullable();
+            $table->integer('new_purchase_qty')->nullable();
+            $table->integer('purchase_value')->nullable();
+            $table->integer('sale_qty')->nullable();
+            $table->integer('sale_value')->nullable();
+            $table->integer('opening_qty')->nullable();
+            $table->integer('opening_value')->nullable();
             $table->string('year', 4)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
