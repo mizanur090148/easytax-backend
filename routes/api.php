@@ -129,6 +129,16 @@ Route::middleware('api')->group(function () {
     Route::patch('/listed-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'update']);
     Route::delete('/listed-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'destroy']);
 
+    Route::get('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'index']);
+    Route::post('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'store']);
+    Route::patch('/retirement-plans/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'update']);
+    Route::delete('/retirement-plans/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'destroy']);
+
+    Route::get('/other-investments',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'index']);
+    Route::post('/other-investments',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'store']);
+    Route::patch('/other-investments/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'update']);
+    Route::delete('/other-investments/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'destroy']);
+
 });
 
 
