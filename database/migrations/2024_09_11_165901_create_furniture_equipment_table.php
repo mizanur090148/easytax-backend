@@ -18,9 +18,19 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->smallInteger('type_id')->nullable();
-            $table->float('closing_qty', 30)->nullable();
-            $table->float('closing_value', 30)->nullable();
+            $table->integer('type_id')->nullable();
+            $table->integer('closing_qty')->nullable();
+            $table->integer('closing_value')->nullable();
+
+            $table->integer('new_purchase_qty')->nullable();
+            $table->integer('purchase_value')->nullable();
+
+            $table->integer('sale_disposal_qty')->nullable();
+            $table->integer('sale_disposal_value')->nullable();
+
+            $table->integer('opening_qty')->nullable();
+            $table->integer('opening_value')->nullable();
+
             $table->string('year', 4)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();

@@ -15,6 +15,13 @@ class Jewellery extends Model
         'type',
         'closing_qty',
         'closing_value',
+        'new_purchase_qty',
+        'purchase_value',
+        'sale_qty',
+        'sale_value',
+        'new_purchase_qty',
+        'opening_qty',
+        'opening_value',
         'year',
         'past_return'
     ];

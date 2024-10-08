@@ -17,6 +17,12 @@ class FurnitureEquipment extends Model
         'type_id',
         'closing_qty',
         'closing_value',
+        'new_purchase_qty',
+        'purchase_value',
+        'sale_disposal_qty',
+        'sale_disposal_value',
+        'opening_qty',
+        'opening_value',
         'year',
         'past_return'
     ];
