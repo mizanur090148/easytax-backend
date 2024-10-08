@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('passport_no')->nullable();
             $table->string('email')->nullable();
             $table->integer('bangla_boboborsho_allowance')->nullable();
+            $table->integer('total_cost')->nullable();
             $table->integer('interest_receivable_on_provident_fund')->nullable();
             $table->integer('allowable_exemption')->nullable();
             $table->boolean('disabilities')->default(false);
@@ -55,7 +56,7 @@ return new class extends Migration
             $table->integer('old_circle_id')->nullable();
             $table->integer('old_zone_id')->nullable();
             // family profile
-            $table->boolean('marital_status')->default(0)->comment('married=1 , unmarried=0' );
+            $table->string('marital_status')->nullable();
             $table->string('spouse_name')->nullable();
             $table->string('etin_spouse')->nullable();
             $table->string('no_dependent_children')->nullable();
