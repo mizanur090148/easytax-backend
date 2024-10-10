@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('type_of_vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
+            $table->string('type', 30);
             $table->boolean('status')->default(true)->comment('active=true,inactive=false');
             $table->softDeletes();
             $table->timestamps();

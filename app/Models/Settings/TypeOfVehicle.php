@@ -10,8 +10,9 @@ class TypeOfVehicle extends Model
 {
     use HasFactory, SoftDeletes;
 
-     protected $fillable = [
+    protected $fillable = [
         'name',
+        'type',
         'status'
     ];
 }

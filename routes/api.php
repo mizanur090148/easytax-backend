@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\EducationExpenseController;
 use App\Http\Controllers\Api\V1\VacationFestivalExpenseController;
 use App\Http\Controllers\Api\V1\AssetEntries\AgriNonAgriLandController;
 use App\Http\Controllers\Api\V1\Settings\TypeOfVehicleController;
+use App\Http\Controllers\Api\V1\Settings\TypeOfPropertyController;
 
 // Auth routes with 'auth:api' middleware applied where necessary
 Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
@@ -138,4 +139,9 @@ Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::post('/type-of-vehicles', [TypeOfVehicleController::class, 'store']);
     Route::patch('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'update']);
     Route::delete('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'destroy']);
+
+    Route::get('/type-of-properties', [TypeOfPropertyController::class, 'index']);
+    Route::post('/type-of-properties', [TypeOfPropertyController::class, 'store']);
+    Route::patch('/type-of-properties/{id}', [TypeOfPropertyController::class, 'update']);
+    Route::delete('/type-of-properties/{id}', [TypeOfPropertyController::class, 'destroy']);
 });

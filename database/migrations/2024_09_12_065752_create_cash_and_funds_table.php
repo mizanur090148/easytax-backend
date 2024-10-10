@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('type_of_fund', 20)->nullable();
             $table->string('account_no', 30)->nullable();
             $table->string('bank_name', 60)->nullable();
-            $table->float('closing_balance')->nullable();
-            $table->float('cash_in_hand')->nullable();
+            $table->integer('closing_balance')->nullable();
+            $table->integer('cash_in_hand')->nullable();
            
             $table->string('year', 4)->nullable();
             $table->boolean('past_return')->default(false);
