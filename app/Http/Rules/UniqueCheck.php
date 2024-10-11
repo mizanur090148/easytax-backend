@@ -28,7 +28,7 @@ class UniqueCheck implements Rule
         // Don not change because it is common single column wise unique validation rule
         $this->uniqueColumnName = $attribute;
         $row = new $this->modelClassName();
-        $row = $row->where($attribute, $value);
+        $row = $row->where($attribute, $value)->where('type', request('type'));
         if (request('id')) {
             $row = $row->where('id', '!=', request('id'));
         }

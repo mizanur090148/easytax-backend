@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Api\V1\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\Settings\TypeOfVehicleRepositoryInterface;
-use App\Http\Requests\Settings\TypeOfVehicleRequest;
+use App\Repositories\Interfaces\Settings\SettingRepositoryInterface;
+use App\Http\Requests\Settings\SettingRequest;
 use Illuminate\Http\JsonResponse;
 use DB, JsonResponse4;
 
-class TypeOfVehicleController extends Controller
+class SettingController extends Controller
 {
     /**
-     * @var TypeOfVehicleRepositoryInterface
+     * @var SettingRepositoryInterface
      */
     protected $repository;
 
     /**
-     * TypeOfVehicleController constructor.
-     * @param TypeOfVehicleRepositoryInterface $repository
+     * SettingController constructor.
+     * @param SettingRepositoryInterface $repository
      */
-    public function __construct(TypeOfVehicleRepositoryInterface $repository)
+    public function __construct(SettingRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -30,17 +30,21 @@ class TypeOfVehicleController extends Controller
     public function index()
     {
         try {
-            return responseSuccess($this->repository->all());
+            $where = [];
+            if (request('type')) {
+                $where['type'] = request('type');
+            }
+            return responseSuccess($this->repository->all($where));
         } catch (Exception $e) {
         	return responseCantProcess($e);
         }
     }
 
     /**
-     * @param TypeOfVehicleRequest $request
+     * @param SettingRequest $request
      * @return JsonResponse|JsonResponse4
      */
-    public function store(TypeOfVehicleRequest $request)
+    public function store(SettingRequest $request)
     {
         try {
             $result = $this->repository->store($request->all());
@@ -52,10 +56,10 @@ class TypeOfVehicleController extends Controller
 
     /**
      * @param $id
-     * @param TypeOfVehicleRequest $request
+     * @param SettingRequest $request
      * @return JsonResponse
      */
-    public function update($id, TypeOfVehicleRequest $request)
+    public function update($id, SettingRequest $request)
     {
         try {
             $result = $this->repository->update($id, $request->validated());

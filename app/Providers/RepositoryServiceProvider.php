@@ -12,11 +12,8 @@ use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
 use App\Repositories\ListedSecuritiesRepository;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
-
 use App\Repositories\OtherLiabilitiesRepository;
 use App\Repositories\Interfaces\OtherLiabilitiesRepositoryInterface;
-
-
 use App\Repositories\SavingsPlanRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
@@ -45,8 +42,8 @@ use App\Repositories\TransportExpenseRepository;
 use App\Repositories\Interfaces\TransportExpenseRepositoryInterface;
 use App\Repositories\VacationFestivalExpenseRepository;
 use App\Repositories\Interfaces\VacationFestivalExpenseRepositoryInterface;
-use App\Repositories\Settings\TypeOfVehicleRepository;
-use App\Repositories\Interfaces\Settings\TypeOfVehicleRepositoryInterface;
+use App\Repositories\Settings\SettingRepository;
+use App\Repositories\Interfaces\Settings\SettingRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -137,8 +134,8 @@ class RepositoryServiceProvider extends ServiceProvider
             SavingsPlanRepository::class
         );
         $this->app->bind(
-            TypeOfVehicleRepositoryInterface::class,
-            TypeOfVehicleRepository::class
+            SettingRepositoryInterface::class,
+            SettingRepository::class
         );
         $this->app->bind(
             GovSecuritiesRepositoryInterface::class,
