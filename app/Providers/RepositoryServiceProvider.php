@@ -11,6 +11,7 @@ use App\Repositories\Interfaces\ListedSecuritiesRepositoryInterface;
 use App\Repositories\Interfaces\OtherInvestmentRepositoryInterface;
 use App\Repositories\Interfaces\RetirementPlanRepositoryInterface;
 use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
+use App\Repositories\Interfaces\Settings\ZoneRepositoryInterface;
 use App\Repositories\ListedSecuritiesRepository;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
@@ -22,6 +23,7 @@ use App\Repositories\Interfaces\OtherLiabilitiesRepositoryInterface;
 
 use App\Repositories\RetirementPlanRepository;
 use App\Repositories\SavingsPlanRepository;
+use App\Repositories\Settings\ZoneRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
 use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
@@ -51,6 +53,10 @@ use App\Repositories\VacationFestivalExpenseRepository;
 use App\Repositories\Interfaces\VacationFestivalExpenseRepositoryInterface;
 use App\Repositories\Settings\TypeOfVehicleRepository;
 use App\Repositories\Interfaces\Settings\TypeOfVehicleRepositoryInterface;
+use App\Repositories\Settings\CircleRepository;
+use App\Repositories\Interfaces\Settings\CircleRepositoryInterface;
+
+
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -160,6 +166,15 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             OtherInvestmentRepositoryInterface::class,
             OtherInvestmentRepository::class
+        );
+        $this->app->bind(
+            CircleRepositoryInterface::class,
+            CircleRepository::class
+        );
+
+        $this->app->bind(
+            ZoneRepositoryInterface::class,
+            ZoneRepository::class
         );
 
     }

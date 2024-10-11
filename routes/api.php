@@ -148,4 +148,14 @@ Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::post('/type-of-vehicles', [TypeOfVehicleController::class, 'store']);
     Route::patch('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'update']);
     Route::delete('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'destroy']);
+
+    Route::get('/circles', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'index']);
+    Route::post('/circles', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'store']);
+    Route::patch('/circles/{id}', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'update']);
+    Route::delete('/circles/{id}', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'destroy']);
+
+    Route::get('/zones', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'index']);
+    Route::post('/zones', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'store']);
+    Route::patch('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'update']);
+    Route::delete('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'destroy']);
 });
