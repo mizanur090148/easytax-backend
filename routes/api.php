@@ -17,7 +17,8 @@ use App\Http\Controllers\Api\V1\TransportExpenseController;
 use App\Http\Controllers\Api\V1\EducationExpenseController;
 use App\Http\Controllers\Api\V1\VacationFestivalExpenseController;
 use App\Http\Controllers\Api\V1\AssetEntries\AgriNonAgriLandController;
-use App\Http\Controllers\Api\V1\Settings\TypeOfVehicleController;
+use App\Http\Controllers\Api\V1\Settings\SettingController;
+use App\Http\Controllers\Api\V1\Settings\TypeOfPropertyController;
 
 // Auth routes with 'auth:api' middleware applied where necessary
 Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
@@ -144,6 +145,15 @@ Route::middleware('api')->group(function () {
 
 ### SETTINGS ROUTE ###
 Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
+    Route::get('/common', [SettingController::class, 'index']);
+    Route::post('/common', [SettingController::class, 'store']);
+    Route::patch('/common/{id}', [SettingController::class, 'update']);
+    Route::delete('/common/{id}', [SettingController::class, 'destroy']);
+
+    Route::get('/type-of-properties', [TypeOfPropertyController::class, 'index']);
+    Route::post('/type-of-properties', [TypeOfPropertyController::class, 'store']);
+    Route::patch('/type-of-properties/{id}', [TypeOfPropertyController::class, 'update']);
+    Route::delete('/type-of-properties/{id}', [TypeOfPropertyController::class, 'destroy']);
     Route::get('/type-of-vehicles', [TypeOfVehicleController::class, 'index']);
     Route::post('/type-of-vehicles', [TypeOfVehicleController::class, 'store']);
     Route::patch('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'update']);

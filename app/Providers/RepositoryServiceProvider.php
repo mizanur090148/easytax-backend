@@ -57,6 +57,8 @@ use App\Repositories\Settings\CircleRepository;
 use App\Repositories\Interfaces\Settings\CircleRepositoryInterface;
 
 
+use App\Repositories\Settings\SettingRepository;
+use App\Repositories\Interfaces\Settings\SettingRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -147,8 +149,8 @@ class RepositoryServiceProvider extends ServiceProvider
             SavingsPlanRepository::class
         );
         $this->app->bind(
-            TypeOfVehicleRepositoryInterface::class,
-            TypeOfVehicleRepository::class
+            SettingRepositoryInterface::class,
+            SettingRepository::class
         );
         $this->app->bind(
             GovSecuritiesRepositoryInterface::class,
