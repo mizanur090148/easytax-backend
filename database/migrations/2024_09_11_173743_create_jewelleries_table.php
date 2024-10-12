@@ -18,7 +18,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->string('type', 8);
+            $table->unsignedBigInteger('type_id')->nullable();
             $table->integer('closing_qty')->nullable();
             $table->integer('closing_value')->nullable();
             $table->integer('new_purchase_qty')->nullable();

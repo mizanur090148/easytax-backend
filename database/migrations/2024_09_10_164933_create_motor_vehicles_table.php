@@ -21,9 +21,10 @@ return new class extends Migration
             $table->unsignedBigInteger('type_id')->nullable();
             $table->string('capacity', 30)->nullable();
             $table->string('brand', 30)->nullable();
-            $table->string('registration_no', 20)->nullable();
-            $table->float('cost_with_registration')->nullable();
+            $table->string('registration_no', 50)->nullable();
+            $table->integer('cost_with_registration')->nullable();
             $table->integer('cost_of_sale')->nullable();
+            $table->integer('closing_cost')->nullable();
             $table->string('year', 4)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
