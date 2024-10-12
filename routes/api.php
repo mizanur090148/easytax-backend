@@ -130,6 +130,16 @@ Route::middleware('api')->group(function () {
     Route::patch('/listed-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'update']);
     Route::delete('/listed-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'destroy']);
 
+    Route::get('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'index']);
+    Route::post('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'store']);
+    Route::patch('/retirement-plans/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'update']);
+    Route::delete('/retirement-plans/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'destroy']);
+
+    Route::get('/other-investments',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'index']);
+    Route::post('/other-investments',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'store']);
+    Route::patch('/other-investments/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'update']);
+    Route::delete('/other-investments/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'destroy']);
+
 });
 
 
@@ -144,4 +154,18 @@ Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::post('/type-of-properties', [TypeOfPropertyController::class, 'store']);
     Route::patch('/type-of-properties/{id}', [TypeOfPropertyController::class, 'update']);
     Route::delete('/type-of-properties/{id}', [TypeOfPropertyController::class, 'destroy']);
+    Route::get('/type-of-vehicles', [TypeOfVehicleController::class, 'index']);
+    Route::post('/type-of-vehicles', [TypeOfVehicleController::class, 'store']);
+    Route::patch('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'update']);
+    Route::delete('/type-of-vehicles/{id}', [TypeOfVehicleController::class, 'destroy']);
+
+    Route::get('/circles', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'index']);
+    Route::post('/circles', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'store']);
+    Route::patch('/circles/{id}', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'update']);
+    Route::delete('/circles/{id}', [\App\Http\Controllers\Api\V1\Settings\CircleController::class, 'destroy']);
+
+    Route::get('/zones', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'index']);
+    Route::post('/zones', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'store']);
+    Route::patch('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'update']);
+    Route::delete('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'destroy']);
 });
