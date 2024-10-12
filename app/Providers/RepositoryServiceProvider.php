@@ -8,13 +8,22 @@ use App\Repositories\InstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\GovSecuritiesRepositoryInterface;
 use App\Repositories\Interfaces\InstitutionalLiabilitiesRepositoryInterface;
 use App\Repositories\Interfaces\ListedSecuritiesRepositoryInterface;
+use App\Repositories\Interfaces\OtherInvestmentRepositoryInterface;
+use App\Repositories\Interfaces\RetirementPlanRepositoryInterface;
 use App\Repositories\Interfaces\SavingsPlanRepositoryInterface;
+use App\Repositories\Interfaces\Settings\ZoneRepositoryInterface;
 use App\Repositories\ListedSecuritiesRepository;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
+
+use App\Repositories\OtherInvestmentRepository;
 use App\Repositories\OtherLiabilitiesRepository;
 use App\Repositories\Interfaces\OtherLiabilitiesRepositoryInterface;
+
+
+use App\Repositories\RetirementPlanRepository;
 use App\Repositories\SavingsPlanRepository;
+use App\Repositories\Settings\ZoneRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AgriNonAgriRepository;
 use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
@@ -42,6 +51,12 @@ use App\Repositories\TransportExpenseRepository;
 use App\Repositories\Interfaces\TransportExpenseRepositoryInterface;
 use App\Repositories\VacationFestivalExpenseRepository;
 use App\Repositories\Interfaces\VacationFestivalExpenseRepositoryInterface;
+use App\Repositories\Settings\TypeOfVehicleRepository;
+use App\Repositories\Interfaces\Settings\TypeOfVehicleRepositoryInterface;
+use App\Repositories\Settings\CircleRepository;
+use App\Repositories\Interfaces\Settings\CircleRepositoryInterface;
+
+
 use App\Repositories\Settings\SettingRepository;
 use App\Repositories\Interfaces\Settings\SettingRepositoryInterface;
 
@@ -144,6 +159,24 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ListedSecuritiesRepositoryInterface::class,
             ListedSecuritiesRepository::class
+        );
+        $this->app->bind(
+            RetirementPlanRepositoryInterface::class,
+            RetirementPlanRepository::class
+        );
+
+        $this->app->bind(
+            OtherInvestmentRepositoryInterface::class,
+            OtherInvestmentRepository::class
+        );
+        $this->app->bind(
+            CircleRepositoryInterface::class,
+            CircleRepository::class
+        );
+
+        $this->app->bind(
+            ZoneRepositoryInterface::class,
+            ZoneRepository::class
         );
 
     }
