@@ -17,6 +17,41 @@ class UserService
         $this->user = $user;
         $this->userDetails = $userDetails;
     }
+    public function clientList($requestData){
+        $clients = User::with('userDetail')->get();
+        return $clients;
+    }
+    public function clientSave($requestData)
+    {
+        // Extract only fields that belong to the users table
+        $userData = [
+            'email' => $requestData['email'],
+            'profile_type' => $requestData['profile_type'] ?? 'individual', // Default to 'individual' if not provided
+            'password' => bcrypt('secret'), // Default password
+            'email_verified_at' => $requestData['email_verified_at'] ?? null, // Optional field
+
+        ];
+
+        // Save user data to the users table
+        $user = User::create($userData);
+
+        // Extract fields that belong to the user_details table
+        $userDetailData = [
+            'mobile' => $requestData['mobile'] ?? null,
+            'profession' => $requestData['profession'] ?? null,
+            'etin_number' => $requestData['etin_number'] ?? null,
+            'full_name' => $requestData['full_name'] ?? null,
+            'email' => $requestData['email'] ?? null,
+            'profile_type' => $requestData['profile_type'] ?? 'individual', // Default to 'individual' if not provided
+
+        ];
+
+        // Save additional user details using the userDetail() relationship
+        $user->userDetail()->create($userDetailData);
+
+        // Return the created user and associated details
+        return $user->load('userDetail'); // This loads the user along with the related user details
+    }
 
     public function update($requestData, $id)
     {
@@ -40,6 +75,7 @@ class UserService
         return $userDetails;
     }
 
+
     protected function prepareData($requestData, $existingData = null)
     {
         if (!$existingData) {
@@ -48,7 +84,7 @@ class UserService
 
         $data = [
             //#### personal profile:
-            //'profile_type' => $requestData['profile_type'] ?? $existingData->profile_type,
+            'profile_type' => $requestData['profile_type'] ?? $existingData->profile_type,
             'full_name' => $requestData['full_name'] ?? $existingData->full_name,
             'gender' => $requestData['gender'] ?? $existingData->gender,
             'dob' => $requestData['dob'] ?? $existingData->dob,
