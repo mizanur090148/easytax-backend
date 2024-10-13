@@ -140,6 +140,13 @@ Route::middleware('api')->group(function () {
     Route::patch('/other-investments/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'update']);
     Route::delete('/other-investments/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'destroy']);
 
+
+    Route::get('/client-lists',  [UserController::class, 'clientList']);
+    Route::post('/client-lists',  [UserController::class, 'clientStore']);
+    Route::patch('/client-lists/{id}',  [UserController::class, 'clientUpdate']);
+    Route::delete('/client-lists/{id}', [UserController::class, 'clientDestroy']);
+
+
 });
 
 
