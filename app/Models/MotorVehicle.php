@@ -18,6 +18,7 @@ class MotorVehicle extends Model
         'registration_no',
         'cost_with_registration',
         'cost_of_sale',
+        'closing_cost',
         'year',
         'past_return'
     ];

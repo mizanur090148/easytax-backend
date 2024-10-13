@@ -12,7 +12,7 @@ class Jewellery extends Model
 
     protected $fillable = [
         'user_id',
-        'type',
+        'type_id',
         'closing_qty',
         'closing_value',
         'new_purchase_qty',

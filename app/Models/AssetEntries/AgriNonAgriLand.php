@@ -13,7 +13,7 @@ class AgriNonAgriLand extends Model
     protected $fillable = [
         'user_id',
         'type',
-        'property_type',
+        'property_type_id',
         'location_of_property',
         'date_of_purchase',
         'size_of_property',

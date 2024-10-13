@@ -24,7 +24,7 @@ class AgriNonAgriLandRequest extends FormRequest
         return [
             'user_id.*' => ['required'],
             'type.*' => ['required'],
-            'property_type.*' => ['required'],
+            'property_type_id.*' => ['required'],
             'date_of_purchase.*' => [
                 'nullable',
                 'date',
