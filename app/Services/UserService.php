@@ -81,6 +81,16 @@ class UserService
         if (!$existingData) {
             return $requestData;
         }
+        $old_tin="";
+        $old_circle_id="";
+        $old_zone_id="";
+
+        if(!empty($requestData['has_old_tin'])){
+            $old_tin= $requestData['old_tin'] ?? "";
+            $old_circle_id = $requestData['old_circle_id'] ?? "";
+            $old_zone_id = $requestData['old_zone_id'] ?? "";
+
+        }
 
         $data = [
             //#### personal profile:
@@ -116,9 +126,9 @@ class UserService
             'tax_payer_status' => $requestData['tax_payer_status'] ?? $existingData->tax_payer_status,
             'residential_status' => $requestData['residential_status'] ?? $existingData->residential_status,
             'tax_payer_location_id' => $requestData['tax_payer_location_id'] ?? $existingData->tax_payer_location_id,
-            'old_tin' => $requestData['old_tin'] ?? $existingData->old_tin,
-            'old_circle_id' => $requestData['old_circle_id'] ?? $existingData->old_circle_id,
-            'old_zone_id' => $requestData['old_zone_id'] ?? $existingData->old_zone_id,
+            'old_tin' =>$old_tin,
+            'old_circle_id' => $old_circle_id,
+            'old_zone_id' => $old_zone_id,
             // family profile
             'marital_status' => $requestData['marital_status'] ?? $existingData->marital_status,
             'spouse_name' => $requestData['spouse_name'] ?? $existingData->spouse_name,
