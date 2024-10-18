@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1\Settings;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\Settings\SettingRepositoryInterface;
 use App\Http\Requests\Settings\SettingRequest;
+use App\Services\DropdownService;
+use App\Models\Settings\Setting;
 use Illuminate\Http\JsonResponse;
 use DB, JsonResponse4;
 
@@ -77,6 +79,20 @@ class SettingController extends Controller
     {
         try {
             return responseDeleted($this->repository->delete($id));
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
+
+    /**
+     * @param DropdownService $service
+     * @return JsonResponse
+     */
+    public function dropdown(DropdownService $service)
+    {
+        try {
+            $data = $service->dropdownData(Setting::class, [], ['id','name'], true);
+             return responseSuccess($data);
         } catch (Exception $e) {
             return responseCantProcess($e);
         }

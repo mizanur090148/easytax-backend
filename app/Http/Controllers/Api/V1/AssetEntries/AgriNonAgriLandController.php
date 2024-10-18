@@ -36,6 +36,9 @@ class AgriNonAgriLandController extends Controller
             if (request('type')) {
                 $where['type'] = request('type');
             }
+            if (request('past_return')) {
+                $where['past_return'] = request('past_return');
+            }
             return responseSuccess($this->repository->all($where));
         } catch (Exception $e) {
         	return responseCantProcess($e);
