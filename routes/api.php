@@ -145,8 +145,6 @@ Route::middleware('api')->group(function () {
     Route::post('/client-lists',  [UserController::class, 'clientStore']);
     Route::patch('/client-lists/{id}',  [UserController::class, 'clientUpdate']);
     Route::delete('/client-lists/{id}', [UserController::class, 'clientDestroy']);
-
-
 });
 
 
@@ -175,4 +173,8 @@ Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::post('/zones', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'store']);
     Route::patch('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'update']);
     Route::delete('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'destroy']);
+
+    // Drodowns
+    Route::get('/dropdown', [SettingController::class, 'dropdown']);
+    Route::get('/complex-dropdown', [SettingController::class, 'complexDropdown']);
 });

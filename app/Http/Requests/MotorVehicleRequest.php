@@ -22,12 +22,14 @@ class MotorVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id.*' => ['required'],
-            'type_id.*' => ['required'],
-            'capacity.*' => [
-                'nullable',
-                'string',
-                'max:30',
+            'user_id.*' => [
+                'required'
+            ],
+            'type_id.*' => [
+                'required'
+            ],
+            'capacity_id.*' => [
+                'required'
             ],
             'brand.*' => [
                 'nullable',

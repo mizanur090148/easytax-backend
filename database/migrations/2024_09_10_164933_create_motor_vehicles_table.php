@@ -19,6 +19,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->unsignedBigInteger('type_id')->nullable();
+            $table->unsignedBigInteger('capacity_id')->nullable();
             $table->string('capacity', 30)->nullable();
             $table->string('brand', 30)->nullable();
             $table->string('registration_no', 50)->nullable();

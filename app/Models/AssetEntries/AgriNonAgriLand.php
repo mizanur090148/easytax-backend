@@ -5,6 +5,7 @@ namespace App\Models\AssetEntries;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Settings\Setting;
 
 class AgriNonAgriLand extends Model
 {
@@ -24,4 +25,9 @@ class AgriNonAgriLand extends Model
         'year',
         'past_return'
     ];
+
+    public function propertyType()
+    {
+        return $this->belongsTo(Setting::class, 'property_type_id')->withDefault();
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Services;
+namespace App\Services;
 
 
 class DropdownService
@@ -23,7 +23,11 @@ class DropdownService
         }
         // where
         if (count($where)) {
-            $model = $model->where($where);
+            if ($isMultiple) {
+                $model = $model->whereIn($where);
+            } else {
+                $model = $model->where($where);
+            }
         }
         $model = $model->orderBy('id', 'desc');
 
