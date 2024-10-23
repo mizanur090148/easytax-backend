@@ -3,6 +3,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\GovSecuritiesRepository;
 use App\Repositories\InstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\GovSecuritiesRepositoryInterface;
@@ -15,16 +16,14 @@ use App\Repositories\Interfaces\Settings\ZoneRepositoryInterface;
 use App\Repositories\ListedSecuritiesRepository;
 use App\Repositories\NonInstitutionalLiabilitiesRepository;
 use App\Repositories\Interfaces\NonInstitutionalLiabilitiesRepositoryInterface;
-
 use App\Repositories\OtherInvestmentRepository;
 use App\Repositories\OtherLiabilitiesRepository;
 use App\Repositories\Interfaces\OtherLiabilitiesRepositoryInterface;
-
-
 use App\Repositories\RetirementPlanRepository;
 use App\Repositories\SavingsPlanRepository;
 use App\Repositories\Settings\ZoneRepository;
-use Illuminate\Support\ServiceProvider;
+use App\Repositories\BusinessAssetRepository;
+use App\Repositories\Interfaces\BusinessAssetRepositoryInterface;
 use App\Repositories\AgriNonAgriRepository;
 use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
 use App\Repositories\FinancialAssetRepository;
@@ -177,6 +176,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ZoneRepositoryInterface::class,
             ZoneRepository::class
+        );
+
+        $this->app->bind(
+            BusinessAssetRepositoryInterface::class,
+            BusinessAssetRepository::class
         );
 
     }

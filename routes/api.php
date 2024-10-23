@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\IncomeEntryController;
 use App\Http\Controllers\Api\AssetEntryController;
+use App\Http\Controllers\Api\V1\BusinessAssetController;
 use App\Http\Controllers\Api\V1\JewelleryController;
 use App\Http\Controllers\Api\V1\CashAndFundController;
 use App\Http\Controllers\Api\V1\MotorVehicleController;
@@ -38,6 +39,10 @@ Route::middleware('api')->group(function () {
     Route::post('/income-entries', [IncomeEntryController::class, 'store']);
     Route::patch('/income-entries/{id}', [IncomeEntryController::class, 'update']);
     Route::delete('/income-entries/{id}', [IncomeEntryController::class, 'destroy']);
+
+    Route::get('/business-assets', [BusinessAssetController::class, 'index']);
+    Route::post('/business-assets', [BusinessAssetController::class, 'storeOrUpdate']);
+    Route::delete('/business-assets/{id}', [BusinessAssetController::class, 'destroy']);
 
     // Asset entries
     // Route::get('/assets-entries', [\App\Http\Controllers\Api\AssetEntryController::class, 'index'])->name('asset-entries');
