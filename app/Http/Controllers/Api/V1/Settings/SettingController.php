@@ -9,6 +9,7 @@ use App\Services\DropdownService;
 use App\Models\Settings\Setting;
 use App\Models\AssetEntries\AgriNonAgriLand;
 use App\Models\MotorVehicle;
+use App\Models\BusinessAsset;
 use App\Models\Jewellery;
 use App\Models\FurnitureEquipment;
 use Illuminate\Http\JsonResponse;
@@ -123,6 +124,9 @@ class SettingController extends Controller
                         ->whereIn('type', ['agri', 'non-agri'])
                         ->get()
                         ->pluck('propertyType.name','propertyType.id');
+                    break;
+                case 'capitalGainFromCapitalMarket':
+                    $result = BusinessAsset::where('past_return', 1)->pluck('name_of_business','id');
                     break;
                 case 'capitalGainFromOtherAssets':
                     $motorVehicles = MotorVehicle::with('propertyType:id,name')
