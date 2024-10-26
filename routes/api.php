@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\IncomeEntryController;
 use App\Http\Controllers\Api\AssetEntryController;
 use App\Http\Controllers\Api\V1\BusinessAssetController;
+use App\Http\Controllers\Api\V1\DirectoryShareController;
 use App\Http\Controllers\Api\V1\JewelleryController;
 use App\Http\Controllers\Api\V1\CashAndFundController;
 use App\Http\Controllers\Api\V1\MotorVehicleController;
@@ -43,6 +44,10 @@ Route::middleware('api')->group(function () {
     Route::get('/business-assets', [BusinessAssetController::class, 'index']);
     Route::post('/business-assets', [BusinessAssetController::class, 'storeOrUpdate']);
     Route::delete('/business-assets/{id}', [BusinessAssetController::class, 'destroy']);
+
+    Route::get('/directory-shares', [DirectoryShareController::class, 'index']);
+    Route::post('/directory-shares', [DirectoryShareController::class, 'storeOrUpdate']);
+    Route::delete('/directory-shares/{id}', [DirectoryShareController::class, 'destroy']);
 
     // Asset entries
     // Route::get('/assets-entries', [\App\Http\Controllers\Api\AssetEntryController::class, 'index'])->name('asset-entries');

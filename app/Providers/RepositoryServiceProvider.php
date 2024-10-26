@@ -54,10 +54,10 @@ use App\Repositories\Settings\TypeOfVehicleRepository;
 use App\Repositories\Interfaces\Settings\TypeOfVehicleRepositoryInterface;
 use App\Repositories\Settings\CircleRepository;
 use App\Repositories\Interfaces\Settings\CircleRepositoryInterface;
-
-
 use App\Repositories\Settings\SettingRepository;
 use App\Repositories\Interfaces\Settings\SettingRepositoryInterface;
+use App\Repositories\DirectoryShareRepository;
+use App\Repositories\Interfaces\DirectoryShareRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -181,6 +181,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             BusinessAssetRepositoryInterface::class,
             BusinessAssetRepository::class
+        );
+
+         $this->app->bind(
+            DirectoryShareRepositoryInterface::class,
+            DirectoryShareRepository::class
         );
 
     }
