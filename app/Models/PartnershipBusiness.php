@@ -6,19 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DirectoryShare extends Model
+class PartnershipBusiness extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
-        'name_of_company',
-        'incorporation_no',
+        'name_of_business',
+        'address',
         'closing_capital',
-        'closing_no_of_shares',
-        'cost_per_share',
-        'total_closing_value',
-        'year',
+        'business_etin',
         'past_return'
     ];
 }

@@ -3,17 +3,17 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Interfaces\DirectoryShareRepositoryInterface;
-use App\Models\DirectoryShare;
+use App\Models\PartnershipBusiness;
+use App\Repositories\Interfaces\PartnershipBusinessRepositoryInterface;
 
-class DirectoryShareRepository extends BaseRepository implements DirectoryShareRepositoryInterface
+class PartnershipBusinessRepository extends BaseRepository implements PartnershipBusinessRepositoryInterface
 {
 
     /**
-     * DirectoryShareRepository constructor.
-     * @param DirectoryShare $model
+     * AccountRepository constructor.
+     * @param Account $model
      */
-    public function __construct(DirectoryShare $model)
+    public function __construct(PartnershipBusiness $model)
     {
         parent::__construct($model);
     }
@@ -24,7 +24,7 @@ class DirectoryShareRepository extends BaseRepository implements DirectoryShareR
      */
     public function storeOrUpdate(array $data)
     {
-    	$result = []; 
+    	$result = [];
     	foreach ($data as $item) {
 	    	if (!empty($item['id'])) {
 		        $result[] = tap($this->getModel()->where('id', $item['id']))->update($item)->first();

@@ -155,6 +155,13 @@ Route::middleware('api')->group(function () {
     Route::post('/client-lists',  [UserController::class, 'clientStore']);
     Route::patch('/client-lists/{id}',  [UserController::class, 'clientUpdate']);
     Route::delete('/client-lists/{id}', [UserController::class, 'clientDestroy']);
+
+
+    Route::get('/partnership-business',  [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'index']);
+    Route::post('/partnership-business',  [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'storeOrUpdate']);
+    Route::patch('/partnership-business/{id}',  [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'storeOrUpdate']);
+    Route::delete('/partnership-business/{id}', [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'destroy']);
+
 });
 
 
