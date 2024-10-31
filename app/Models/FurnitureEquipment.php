@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Settings\Setting;
 
 class FurnitureEquipment extends Model
 {
@@ -26,4 +27,9 @@ class FurnitureEquipment extends Model
         'year',
         'past_return'
     ];
+
+    public function propertyType()
+    {
+        return $this->belongsTo(Setting::class, 'type_id')->withDefault();
+    }
 }

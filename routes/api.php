@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\IncomeEntryController;
 use App\Http\Controllers\Api\AssetEntryController;
+use App\Http\Controllers\Api\V1\BusinessAssetController;
+use App\Http\Controllers\Api\V1\DirectoryShareController;
 use App\Http\Controllers\Api\V1\JewelleryController;
 use App\Http\Controllers\Api\V1\CashAndFundController;
 use App\Http\Controllers\Api\V1\MotorVehicleController;
@@ -38,6 +40,14 @@ Route::middleware('api')->group(function () {
     Route::post('/income-entries', [IncomeEntryController::class, 'store']);
     Route::patch('/income-entries/{id}', [IncomeEntryController::class, 'update']);
     Route::delete('/income-entries/{id}', [IncomeEntryController::class, 'destroy']);
+
+    Route::get('/business-assets', [BusinessAssetController::class, 'index']);
+    Route::post('/business-assets', [BusinessAssetController::class, 'storeOrUpdate']);
+    Route::delete('/business-assets/{id}', [BusinessAssetController::class, 'destroy']);
+
+    Route::get('/directory-shares', [DirectoryShareController::class, 'index']);
+    Route::post('/directory-shares', [DirectoryShareController::class, 'storeOrUpdate']);
+    Route::delete('/directory-shares/{id}', [DirectoryShareController::class, 'destroy']);
 
     // Asset entries
     // Route::get('/assets-entries', [\App\Http\Controllers\Api\AssetEntryController::class, 'index'])->name('asset-entries');
@@ -145,8 +155,6 @@ Route::middleware('api')->group(function () {
     Route::post('/client-lists',  [UserController::class, 'clientStore']);
     Route::patch('/client-lists/{id}',  [UserController::class, 'clientUpdate']);
     Route::delete('/client-lists/{id}', [UserController::class, 'clientDestroy']);
-
-
 });
 
 
@@ -175,4 +183,8 @@ Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::post('/zones', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'store']);
     Route::patch('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'update']);
     Route::delete('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'destroy']);
+
+    // Drodowns
+    Route::get('/dropdown', [SettingController::class, 'dropdown']);
+    Route::get('/complex-dropdown', [SettingController::class, 'complexDropdown']);
 });

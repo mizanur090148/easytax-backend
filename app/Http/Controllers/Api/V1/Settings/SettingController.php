@@ -5,6 +5,13 @@ namespace App\Http\Controllers\Api\V1\Settings;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\Settings\SettingRepositoryInterface;
 use App\Http\Requests\Settings\SettingRequest;
+use App\Services\DropdownService;
+use App\Models\Settings\Setting;
+use App\Models\AssetEntries\AgriNonAgriLand;
+use App\Models\MotorVehicle;
+use App\Models\BusinessAsset;
+use App\Models\Jewellery;
+use App\Models\FurnitureEquipment;
 use Illuminate\Http\JsonResponse;
 use DB, JsonResponse4;
 
@@ -77,6 +84,70 @@ class SettingController extends Controller
     {
         try {
             return responseDeleted($this->repository->delete($id));
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
+
+    /**
+     * @param DropdownService $service
+     * @return JsonResponse
+     */
+    public function dropdown(DropdownService $service)
+    {
+        try {
+            $data = $service->dropdownData(Setting::class, [], ['id','name'], true);
+             return responseSuccess($data);
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
+
+     /**
+     * @param DropdownService $service
+     * @return JsonResponse
+     */
+    public function complexDropdown()
+    {
+
+//         Header Change = Capital Gain from Capital Market (Shares)
+// Drop down from assets list
+// Dropdown from Assets list (Financial Assets) Plus
+// Past Return-> Share of Limited Company-> Business 1
+
+
+        try {
+            switch (request('type')) {
+                case 'capitalGainFromSaleLand':
+                    $result = AgriNonAgriLand::with('propertyType:id,name')
+                        ->where('past_return', 1)
+                        ->whereIn('type', ['agri', 'non-agri'])
+                        ->get()
+                        ->pluck('propertyType.name','propertyType.id');
+                    break;
+                case 'capitalGainFromCapitalMarket':
+                    $result = BusinessAsset::where('past_return', 1)->pluck('name_of_business','id');
+                    break;
+                case 'capitalGainFromOtherAssets':
+                    $motorVehicles = MotorVehicle::with('propertyType:id,name')
+                        ->where('past_return', 1)
+                        ->get()
+                        ->pluck('propertyType.name','propertyType.id')
+                        ->toArray();
+                    $jewelleries = Jewellery::with('propertyType:id,name')
+                        ->where('past_return', 1)
+                        ->get()
+                        ->pluck('propertyType.name','propertyType.id')
+                        ->toArray();
+                    $furnitureEquipments = FurnitureEquipment::with('propertyType:id,name')
+                        ->where('past_return', 1)
+                        ->get()
+                        ->pluck('propertyType.name','propertyType.id')
+                        ->toArray();
+                    $result = $motorVehicles + $jewelleries + $furnitureEquipments;
+                    break;
+            }
+            return responseSuccess($result);
         } catch (Exception $e) {
             return responseCantProcess($e);
         }

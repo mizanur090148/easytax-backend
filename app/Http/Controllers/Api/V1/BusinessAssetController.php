@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\AssetEntries;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\AgriNonAgriRepositoryInterface;
-use App\Http\Requests\AssetEntries\AgriNonAgriLandRequest;
+use App\Repositories\Interfaces\BusinessAssetRepositoryInterface;
+use App\Http\Requests\BusinessAssetRequest;
 use Illuminate\Http\JsonResponse;
 use DB, JsonResponse4;
 
-class AgriNonAgriLandController extends Controller
+class BusinessAssetController extends Controller
 {
     /**
-     * @var AgriNonAgriRepositoryInterface
+     * @var BusinessAssetRepositoryInterface
      */
     protected $repository;
 
     /**
-     * AgriNonAgriLandController constructor.
-     * @param AgriNonAgriRepositoryInterface $repository
+     * BusinessAssetController constructor.
+     * @param BusinessAssetRepositoryInterface $repository
      */
-    public function __construct(AgriNonAgriRepositoryInterface $repository)
+    public function __construct(BusinessAssetRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -33,9 +33,6 @@ class AgriNonAgriLandController extends Controller
             $where = [
                 'user_id' => auth()->id()
             ];
-            if (request('type')) {
-                $where['type'] = request('type');
-            }
             if (request('past_return')) {
                 $where['past_return'] = request('past_return');
             }
@@ -46,28 +43,10 @@ class AgriNonAgriLandController extends Controller
     }
 
     /**
-     * @param AgriNonAgriLandRequest $request
-     * @return JsonResponse|JsonResponse4
-     */
-    // public function store(AgriNonAgriLandRequest $request)
-    // {
-    //     try {
-    //         $inputData = [];
-    //         foreach ($request->all() as $data) {
-    //             $inputData[] = $data;
-    //         }
-    //         $result = $this->repository->storeAll($inputData);
-    //         return responseCreated($result);
-    //     } catch (Exception $e) {
-    //         return responseCantProcess($e);
-    //     }
-    // }
-
-    /**
-     * @param AgriNonAgriLandRequest $request
+     * @param BusinessAssetRequest $request
      * @return \JsonResponse
      */
-    public function storeOrUpdate(AgriNonAgriLandRequest $request)
+    public function storeOrUpdate(BusinessAssetRequest $request)
     {
         try {
             DB::beginTransaction();

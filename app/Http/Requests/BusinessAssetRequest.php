@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MotorVehicleRequest extends FormRequest
+class BusinessAssetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,29 +22,34 @@ class MotorVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id.*' => [
-                'required'
-            ],
-            'type_id.*' => [
-                'required'
-            ],
-            'capacity_id.*' => [
-                'required'
-            ],
-            'brand.*' => [
-                'nullable',
+            'user_id.*' => ['required'],
+            'name_of_business.*' => [
+                'required',
                 'string',
-                'max:30',
+                'max:100'
             ],
-            'registration_no.*' => [
-                'nullable',
+            'type_of_business.*' => [
+                'required',
                 'string',
-                'max:30',
+                'max:50'
             ],
-            'cost_with_registration.*' => [
-                'nullable',
+            'address.*' => [
+                'required',
                 'string',
+                'max:150'
             ],
+            'total_assets.*' => [
+                'nullable',
+                'numeric',
+            ],
+            'closing_liabilities.*' => [
+                'nullable',
+                'numeric',
+            ],
+            'closing_capital.*' => [
+                'nullable',
+                'numeric',
+            ]
         ];
     }
 }

@@ -11,21 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('motor_vehicles', function (Blueprint $table) {
+        Schema::create('directory_shares', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('type_id')->nullable();
-            $table->unsignedBigInteger('capacity_id')->nullable();
-            $table->string('capacity', 30)->nullable();
-            $table->string('brand', 30)->nullable();
-            $table->string('registration_no', 50)->nullable();
-            $table->integer('cost_with_registration')->nullable();
-            $table->integer('cost_of_sale')->nullable();
-            $table->integer('closing_cost')->nullable();
+            $table->string('name_of_company', 100)->nullable();
+            $table->string('incorporation_no', 50)->nullable();
+            $table->integer('closing_capital')->nullable();
+            $table->integer('closing_no_of_shares')->nullable();
+            $table->integer('cost_per_share')->nullable();
+            $table->integer('total_closing_value')->nullable();
+
             $table->string('year', 4)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
@@ -38,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('motor_vehicles');
+        Schema::dropIfExists('directory_shares');
     }
 };
