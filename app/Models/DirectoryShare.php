@@ -14,10 +14,10 @@ class DirectoryShare extends Model
         'user_id',
         'name_of_company',
         'incorporation_no',
-        'closing_capital',
+        'incorporation_date',
         'closing_no_of_shares',
         'cost_per_share',
-        'total_closing_value',
+        //'total_closing_value',
         'year',
         'past_return'
     ];

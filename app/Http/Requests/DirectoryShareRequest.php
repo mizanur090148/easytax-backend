@@ -33,9 +33,9 @@ class DirectoryShareRequest extends FormRequest
                 'string',
                 'max:50'
             ],
-            'closing_capital.*' => [
+            'incorporation_date.*' => [
+                'date',
                 'nullable',
-                'numeric',
             ],
             'closing_no_of_shares.*' => [
                 'nullable',
@@ -45,10 +45,10 @@ class DirectoryShareRequest extends FormRequest
                 'nullable',
                 'numeric',
             ],
-            'total_closing_value.*' => [
-                'nullable',
-                'numeric',
-            ]
+            // 'total_closing_value.*' => [
+            //     'nullable',
+            //     'numeric',
+            // ]
         ];
     }
 }
