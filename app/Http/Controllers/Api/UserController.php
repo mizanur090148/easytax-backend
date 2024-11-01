@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -61,6 +62,7 @@ class UserController extends Controller
 
     public function update(Request $request, $user)
     {
+        Log::info($request->all());
 
         try {
             $data = $this->userService->update($request->all(), $user);

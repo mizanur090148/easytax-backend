@@ -11,25 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('business_assets', function (Blueprint $table) {
+        Schema::create('partnership_businesses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
-            $table->string('name_of_business', 100);
-            $table->string('type_of_business', 50);
-            $table->string('address', 150);
-            $table->integer('total_assets')->nullable();
-            $table->integer('closing_liabilities')->nullable();
-            $table->integer('closing_capital')->nullable();
-            $table->year('year')->nullable();
-            $table->boolean('past_return')->default(false);
+            $table->string('name_of_business')->nullable();
+            $table->string('address')->nullable();
+            $table->bigInteger('closing_capital')->nullable();
+            $table->string('business_etin')->nullable();
+            $table->boolean('past_return')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -37,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_assets');
+        Schema::dropIfExists('partnership_businesses');
     }
 };
