@@ -3,7 +3,7 @@
 
 namespace App\Repositories\Interfaces;
 
-interface BusinessAssetRepositoryInterface extends BaseRepositoryInterface
+interface PartnershipBusinessRepositoryInterface extends BaseRepositoryInterface
 {
 	public function storeOrUpdate(array $data);
 }

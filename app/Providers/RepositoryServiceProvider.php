@@ -3,6 +3,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Interfaces\PartnershipBusinessRepositoryInterface;
+use App\Repositories\PartnershipBusinessRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\GovSecuritiesRepository;
 use App\Repositories\InstitutionalLiabilitiesRepository;
@@ -186,6 +188,11 @@ class RepositoryServiceProvider extends ServiceProvider
          $this->app->bind(
             DirectoryShareRepositoryInterface::class,
             DirectoryShareRepository::class
+        );
+
+        $this->app->bind(
+            PartnershipBusinessRepositoryInterface::class,
+            PartnershipBusinessRepository::class
         );
 
     }
