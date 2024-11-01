@@ -17,7 +17,7 @@ class BusinessAsset extends Model
         'address',
         'total_assets',
         'closing_liabilities',
-        'closing_capital',
+       // 'closing_capital',
         'year',
         'past_return'
     ];

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('address', 150);
             $table->integer('total_assets')->nullable();
             $table->integer('closing_liabilities')->nullable();
-            $table->integer('closing_capital')->nullable();
+           // $table->integer('closing_capital')->nullable();
             $table->year('year')->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
