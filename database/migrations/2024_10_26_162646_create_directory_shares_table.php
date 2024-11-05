@@ -20,10 +20,10 @@ return new class extends Migration
 
             $table->string('name_of_company', 100)->nullable();
             $table->string('incorporation_no', 50)->nullable();
-            $table->integer('closing_capital')->nullable();
+            $table->date('incorporation_date')->nullable();
             $table->integer('closing_no_of_shares')->nullable();
             $table->integer('cost_per_share')->nullable();
-            $table->integer('total_closing_value')->nullable();
+            //$table->integer('total_closing_value')->nullable();
 
             $table->string('year', 4)->nullable();
             $table->boolean('past_return')->default(false);

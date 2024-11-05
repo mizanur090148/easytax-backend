@@ -46,10 +46,10 @@ class BusinessAssetRequest extends FormRequest
                 'nullable',
                 'numeric',
             ],
-            'closing_capital.*' => [
-                'nullable',
-                'numeric',
-            ]
+            // 'closing_capital.*' => [
+            //     'nullable',
+            //     'numeric',
+            // ]
         ];
     }
 }

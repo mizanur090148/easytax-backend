@@ -3,30 +3,21 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\DirectoryShareRepositoryInterface;
-use App\Http\Requests\DirectoryShareRequest;
+use App\Http\Requests\PartnershipBusinessRequest;
+use App\Repositories\Interfaces\PartnershipBusinessRepositoryInterface;
+use DB;
 use Illuminate\Http\JsonResponse;
-use DB, JsonResponse4;
+use JsonResponse4;
 
-class DirectoryShareController extends Controller
+class PartnershipBusinessController extends Controller
 {
-    /**
-     * @var DirectoryShareRepositoryInterface
-     */
-    protected $repository;
 
-    /**
-     * DirectoryShareController constructor.
-     * @param DirectoryShareRepositoryInterface $repository
-     */
-    public function __construct(DirectoryShareRepositoryInterface $repository)
+    protected $repository;
+    public function __construct(PartnershipBusinessRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @return JsonResponse|\JsonResponse
-     */
     public function index()
     {
         try {
@@ -42,11 +33,7 @@ class DirectoryShareController extends Controller
         }
     }
 
-    /**
-     * @param DirectoryShareRequest $request
-     * @return \JsonResponse
-     */
-    public function storeOrUpdate(DirectoryShareRequest $request)
+    public function storeOrUpdate(PartnershipBusinessRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -54,7 +41,7 @@ class DirectoryShareController extends Controller
             DB::commit();
             return responsePatched($result);
         } catch (Exception $e) {
-            DB::rollBack(); 
+            DB::rollBack();
             return responseCantProcess($e);
         }
     }
