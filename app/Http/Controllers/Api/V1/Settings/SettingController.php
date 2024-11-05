@@ -109,21 +109,14 @@ class SettingController extends Controller
      */
     public function complexDropdown()
     {
-
-//         Header Change = Capital Gain from Capital Market (Shares)
-// Drop down from assets list
-// Dropdown from Assets list (Financial Assets) Plus
-// Past Return-> Share of Limited Company-> Business 1
-
-
         try {
             switch (request('type')) {
                 case 'capitalGainFromSaleLand':
-                    $result = AgriNonAgriLand::with('propertyType:id,name')
-                        ->where('past_return', 1)
-                        ->whereIn('type', ['agri', 'non-agri'])
-                        ->get()
-                        ->pluck('propertyType.name','propertyType.id');
+                    $result = AgriNonAgriLand::join('settings', 'agri_non_agri_lands.property_type_id', '=','settings.id')
+                        ->where('agri_non_agri_lands.past_return', 0)
+                        ->whereIn('agri_non_agri_lands.type', ['agri', 'non-agri'])
+                        ->select('settings.id','settings.name','agri_non_agri_lands.net_value_of_property')
+                        ->get();
                     break;
                 case 'capitalGainFromCapitalMarket':
                     $result = BusinessAsset::where('past_return', 1)->pluck('name_of_business','id');
