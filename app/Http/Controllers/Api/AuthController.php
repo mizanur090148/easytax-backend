@@ -55,6 +55,13 @@ class AuthController extends Controller
         $result = auth()->user()->load('userDetail');
         $result['token'] = $token;
 
+        $user = auth()->user()->load(
+            'userDetail',
+            'userDetail.circle:id,name',
+            'userDetail.zone:id,name',
+            'userDetail.taxPayerLocation:id,name'
+        );
+
         return response()->json([
             'meta' => [
                 'code' => 200,
@@ -62,7 +69,7 @@ class AuthController extends Controller
                 'message' => 'Login successful.',
             ],
             'data' => [
-                'user' => auth()->user()->load('userDetail'),
+                'user' => $user,
                 'access_token' => [
                     'token' => $token,
                     'type' => 'Bearer',
