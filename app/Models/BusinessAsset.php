@@ -21,6 +21,14 @@ class BusinessAsset extends Model
         'past_return'
     ];
 
+    protected $appends = [
+        'closing_capital'
+    ];
+
+    protected $dates = [
+        'deleted_at'
+    ];
+
     public function getClosingCapitalAttribute()
     {
         return $this->total_assets - $this->closing_liabilities;

@@ -8,6 +8,7 @@ use App\Http\Requests\Settings\SettingRequest;
 use App\Services\DropdownService;
 use App\Models\Settings\Setting;
 use App\Models\AssetEntries\AgriNonAgriLand;
+use App\Models\DirectoryShare;
 use App\Models\MotorVehicle;
 use App\Models\BusinessAsset;
 use App\Models\Jewellery;
@@ -132,14 +133,24 @@ class SettingController extends Controller
                 case 'saleShare':
                     $businessAssets = BusinessAsset::where('past_return', 1)
                         ->select(
-                            'id','name_of_business as name',
-                            'closing_capital as amount'
+                            'id',
+                            'name_of_business as name',
+                            DB::raw('total_assets - closing_liabilities AS amount'),
+                            DB::raw('"business" as type')
                         )->get();
                     $directoryShares = DirectoryShare::where('past_return', 1)
                         ->select(
-                            'id','name_of_company as name',
-                            'total_closing_value as amount'
-                        )->get();
+                            'id',
+                            'name_of_company as name',
+                            DB::raw('
+                                (closing_no_of_shares * cost_per_share) 
+                                + (purchased_no_of_shares * purchased_cost_per_share) 
+                                - (sold_no_of_shares * sold_cost_per_share) 
+                                AS amount'
+                        ),
+                        DB::raw('"marketShare" as type')
+                        )
+                    ->get();
                     $result = $businessAssets->merge($directoryShares);
                     break;
                 case 'otherAssets':
