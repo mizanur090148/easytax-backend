@@ -3,6 +3,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\AssetOutsideBDRepository;
+use App\Repositories\Interfaces\AssetOutsideBDRepositoryInterface;
 use App\Repositories\Interfaces\PartnershipBusinessRepositoryInterface;
 use App\Repositories\PartnershipBusinessRepository;
 use Illuminate\Support\ServiceProvider;
@@ -193,6 +195,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             PartnershipBusinessRepositoryInterface::class,
             PartnershipBusinessRepository::class
+        );
+
+        $this->app->bind(
+            AssetOutsideBDRepositoryInterface::class,
+            AssetOutsideBDRepository::class
         );
 
     }
