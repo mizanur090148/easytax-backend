@@ -162,6 +162,11 @@ Route::middleware('api')->group(function () {
     Route::patch('/partnership-business/{id}',  [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'storeOrUpdate']);
     Route::delete('/partnership-business/{id}', [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'destroy']);
 
+    Route::get('/asset-outside-bd',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'index']);
+    Route::post('/asset-outside-bd',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'storeOrUpdate']);
+    Route::patch('/asset-outside-bd/{id}',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'storeOrUpdate']);
+    Route::delete('/asset-outside-bd/{id}', [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'destroy']);
+
 });
 
 
