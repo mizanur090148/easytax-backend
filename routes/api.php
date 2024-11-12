@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\FinanceExpenseController;
 use App\Http\Controllers\Api\V1\TransportExpenseController;
 use App\Http\Controllers\Api\V1\EducationExpenseController;
 use App\Http\Controllers\Api\V1\VacationFestivalExpenseController;
+use App\Http\Controllers\Api\V1\TotalDataController;
 use App\Http\Controllers\Api\V1\AssetEntries\AgriNonAgriLandController;
 use App\Http\Controllers\Api\V1\Settings\SettingController;
 use App\Http\Controllers\Api\V1\Settings\TypeOfPropertyController;
@@ -164,6 +165,9 @@ Route::middleware('api')->group(function () {
 
 });
 
+Route::middleware('api')->group(function () {
+    Route::get('/past-return-total', [TotalDataController::class, 'pastReturnTotal']);
+});
 
 ### SETTINGS ROUTE ###
 Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
