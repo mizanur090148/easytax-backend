@@ -33,4 +33,16 @@ class TotalDataController extends Controller
         	return responseCantProcess($e);
         }
     }
+
+    /**
+     * @return JsonResponse|\JsonResponse
+     */
+    public function assetsReturnTotal()
+    {
+        try {
+            return responseSuccess($this->service->assetsReturnTotal());
+        } catch (Exception $e) {
+        	return responseCantProcess($e);
+        }
+    }
 }
