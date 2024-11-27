@@ -178,6 +178,7 @@ Route::middleware('api')->group(function () {
 
 Route::middleware('api')->group(function () {
     Route::get('/past-return-total', [TotalDataController::class, 'pastReturnTotal']);
+    Route::get('/assets-return-total', [TotalDataController::class, 'assetsReturnTotal']);
 });
 
 ### SETTINGS ROUTE ###
