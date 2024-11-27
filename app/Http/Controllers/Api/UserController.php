@@ -93,4 +93,17 @@ class UserController extends Controller
         }
         return response()->json($response, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']);
     }
+
+    function profilePictureUpload(Request $request, $user)
+    {
+        Log::info($request->all());
+
+        try {
+            $data = $this->userService->profilePictureUpload($request->all(), $user);
+            return $this->customResponse('profile picture successfully', 200, $data);
+        } catch (\Exception $e) {
+            return $this->customResponse('Error updating user', 500, ['error' => $e->getMessage()]);
+        }
+
+    }
 }

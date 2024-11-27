@@ -31,6 +31,11 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
     Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:api')->name('refresh');
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
     Route::patch('/profile-update/{user}', [UserController::class, 'update'])->name('profile.update');
+
+
+    //profile picture upload
+    Route::post('/profile-picture-upload/{user}',  [\App\Http\Controllers\Api\UserController::class, 'profilePictureUpload']);
+
 });
 
 // Income and Asset routes
@@ -167,6 +172,7 @@ Route::middleware('api')->group(function () {
     Route::post('/asset-outside-bd',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'storeOrUpdate']);
     Route::patch('/asset-outside-bd/{id}',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'storeOrUpdate']);
     Route::delete('/asset-outside-bd/{id}', [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'destroy']);
+
 
 });
 

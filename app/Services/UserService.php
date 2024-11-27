@@ -194,4 +194,26 @@ class UserService
 
         return $data;
     }
+    function profilePictureUpload($requestData, $userId){
+        if (!isset($requestData['picture'])) {
+            throw new \Exception('No picture provided');
+        }
+
+        $picture = $requestData['picture'];
+        $user = User::with('userDetail')->findOrFail($userId);
+        if ($user && !$user->userDetail) {
+            $user->userDetail()->create();
+        }
+        if ($user->userDetail && $user->userDetail->picture) {
+            Storage::disk('public')->delete($user->userDetail->picture);
+        }
+        $path = $picture->store('profile_pictures', 'public');
+        $user->userDetail->picture = $path;
+        $user->userDetail->save();  // Ensure to explicitly save userDetail
+        return [
+            'profile_picture_url' => Storage::url($path),
+        ];
+    }
+
+
 }

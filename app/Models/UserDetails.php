@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Settings\Setting;
+use Illuminate\Support\Facades\Storage;
 
 class UserDetails extends Model
 {
@@ -16,6 +17,8 @@ class UserDetails extends Model
         'freedom_fighter' => 'boolean',
         'children_disabled' => 'boolean'
     ];
+    protected $appends = ['profile_picture_url'];
+
 
     public function userDetails()
     {
@@ -35,6 +38,10 @@ class UserDetails extends Model
     public function taxPayerLocation()
     {
         return $this->belongsTo(Setting::class, 'tax_payer_location_id', 'id')->withDefault();
+    }
+    public function getProfilePictureUrlAttribute()
+    {
+        return $this->picture ? Storage::url($this->picture) : '/path/to/default/image.jpg';
     }
 
 }
