@@ -18,6 +18,7 @@ class FinancialAsset extends Model
         'etin_no',
         'closing_amount',
         'year',
-        'past_return'
+        'past_return',
+        'asset_type'
     ];
 }
