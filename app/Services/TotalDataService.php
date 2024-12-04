@@ -12,6 +12,7 @@ use App\Models\BusinessAsset;
 use App\Models\PartnershipBusiness;
 use App\Models\Jewellery;
 use App\Models\FurnitureEquipment;
+use App\Models\LiabilitiesEntry;
 
 class TotalDataService
 {
@@ -71,6 +72,23 @@ class TotalDataService
             'jewellery'             => $jewellery,
             'furniture'             => $furniture,
             'total'                 => $total
+        ];
+    }
+
+    public function liabilityTotal()
+    {
+        $userId = auth()->id();
+        $institutional = LiabilitiesEntry::where(['type_of_liabilities_entry' => 'institutional', 'user_id' => $userId])->sum('closing');
+        $nonInstitutional = LiabilitiesEntry::where(['type_of_liabilities_entry' => 'non-institutional','user_id' => $userId])->sum('closing');
+        $otherLiabilities = LiabilitiesEntry::where(['type_of_liabilities_entry' => 'other','user_id' => $userId])->sum('closing');
+
+        $total = $institutional + $nonInstitutional + $otherLiabilities;
+
+        return [
+            'institutional'     => $institutional,
+            'nonInstitutional'  => $nonInstitutional,
+            'otherLiabilities'  => $otherLiabilities,
+            'total'             => $total
         ];
 
     }

@@ -45,4 +45,16 @@ class TotalDataController extends Controller
         	return responseCantProcess($e);
         }
     }
+
+    /**
+     * @return JsonResponse|\JsonResponse
+     */
+    public function liabilityTotal()
+    {
+        try {
+            return responseSuccess($this->service->liabilityTotal());
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
 }
