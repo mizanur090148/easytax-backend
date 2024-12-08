@@ -172,8 +172,10 @@ Route::middleware('api')->group(function () {
 
 Route::middleware('api')->group(function () {
     Route::get('/past-return-total', [TotalDataController::class, 'pastReturnTotal']);
+    Route::get('/income-entry-total', [TotalDataController::class, 'incomeEntryTotal']);
     Route::get('/assets-return-total', [TotalDataController::class, 'assetsReturnTotal']);
     Route::get('/liabilities-total', [TotalDataController::class, 'liabilityTotal']);
+    Route::get('/expenses-total', [TotalDataController::class, 'expenseTotal']);
 });
 
 ### SETTINGS ROUTE ###

@@ -34,6 +34,18 @@ class TotalDataController extends Controller
         }
     }
 
+     /**
+     * @return JsonResponse|\JsonResponse
+     */
+    public function incomeEntryTotal()
+    {
+        try {
+            return responseSuccess($this->service->incomeEntryTotal());
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
+
     /**
      * @return JsonResponse|\JsonResponse
      */
@@ -53,6 +65,18 @@ class TotalDataController extends Controller
     {
         try {
             return responseSuccess($this->service->liabilityTotal());
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
+
+    /**
+     * @return JsonResponse|\JsonResponse
+     */
+    public function expenseTotal()
+    {
+        try {
+            return responseSuccess($this->service->expenseTotal());
         } catch (Exception $e) {
             return responseCantProcess($e);
         }

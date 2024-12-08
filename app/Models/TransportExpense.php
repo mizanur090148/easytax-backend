@@ -12,6 +12,7 @@ class TransportExpense extends Model
 
     protected $fillable = [
         'user_id',
+        'has_car',
         'conveyance_payments',
         'fuel_cost',
         'repair_maintenance',

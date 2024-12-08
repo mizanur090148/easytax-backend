@@ -17,7 +17,8 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
+                
+            $table->boolean('has_car')->default(false);
             $table->float('conveyance_payments')->nullable();
             $table->float('fuel_cost')->nullable();
             $table->float('repair_maintenance')->nullable();
