@@ -33,6 +33,15 @@ class TotalDataService
         $salaryIncomeData = $income->salary_income ?? null;
         $salaryIncome = $salaryIncomeData['total'] ?? 0;
 
+        $financialAssetData = $income->financial_assets_income ?? null;
+        $financialAssetsIncome = $financialAssetData['total'] ?? 0;
+
+        $incomeMinorData = $income->income_from_minor_spouse ?? null;
+        $incomeMinor = $incomeMinorData['total'] ?? 0;
+
+        $otherSourcesData = $income->other_sources_of_income ?? null;
+        $otherSources = $otherSourcesData['total'] ?? 0;
+
         $capitalGainData = $income->capital_gain ?? null;
         $capitalGain = 0;
 
@@ -44,17 +53,20 @@ class TotalDataService
                 }
 
                 foreach ($assets as $asset) {
-                    $capitalGain += $asset['sale_price'] ?? 0;
+                    $capitalGain += ($asset['sale_price'] ?? 0);// - ($asset['cost_price'] ?? 0);
                 }
             }
         }
 
-        $total = $salaryIncome + $capitalGain;
+        $total = $salaryIncome + $capitalGain + $financialAssetsIncome + $incomeMinor + $otherSources;
 
         return [
-            'salary_income'         => $salaryIncome,
-            'capital_gain'          => $capitalGain,
-            'total'                 => $total
+            'salary_income'             => $salaryIncome,
+            'capital_gain'              => $capitalGain,
+            'financial_assets_income'   => $financialAssetsIncome,
+            'income_from_minor_spouse'  => $incomeMinor,
+            'other_sources_of_income'   => $otherSources,    
+            'total'                     => $total
         ];
 
     }
