@@ -28,30 +28,32 @@ class TotalDataService
     public function incomeEntryTotal()
     {
         $userId = auth()->id();
-        $income = IncomeEntry::where(['user_id' => $userId])->first();
-        $salaryIncome = $income->salary_income ?? null;
-        // Calculate total salary income by summing up all components
-        // $totalSalaryIncome = 
-        //     ($salaryIncome['basic_salary'] ?? 0) +
-        //     ($salaryIncome['house_rent_allowance'] ?? 0) +
-        //     ($salaryIncome['medical_allowance'] ?? 0) +
-        //     ($salaryIncome['conveyance_allowance'] ?? 0) +
-        //     ($salaryIncome['festival_bonus'] ?? 0) +
-        //     ($salaryIncome['bangla_noboborsho_allowance'] ?? 0) +
-        //     ($salaryIncome['interest_receivable_on_provident_fund'] ?? 0) +
-        //     ($salaryIncome['advance_due_salary'] ?? 0) +
-        //     ($salaryIncome['special_staff_allowance'] ?? 0) +
-        //     ($salaryIncome['leave_allowance'] ?? 0) +
-        //     ($salaryIncome['honorarium_reward'] ?? 0) +
-        //     ($salaryIncome['overtime_allowance'] ?? 0) +
-        //     ($salaryIncome['lump_sum_grant'] ?? 0) +
-        //     ($salaryIncome['gratuity'] ?? 0) +
-        //     ($salaryIncome['any_other_allowance'] ?? 0);
+        //$income = IncomeEntry::where(['user_id' => $userId])->first();
+        $income = IncomeEntry::first();
+        $salaryIncomeData = $income->salary_income ?? null;
+        $salaryIncome = $salaryIncomeData['total'] ?? 0;
 
-        $total = ($salaryIncome['total'] ?? 0);
+        $capitalGainData = $income->capital_gain ?? null;
+        $capitalGain = 0;
+
+        if (!empty($capitalGainData)) {
+            foreach ($capitalGainData as $key => $assets) {
+                // Skip non-array keys like 'is_capital_gain'
+                if (!is_array($assets)) {
+                    continue;
+                }
+
+                foreach ($assets as $asset) {
+                    $capitalGain += $asset['sale_price'] ?? 0;
+                }
+            }
+        }
+
+        $total = $salaryIncome + $capitalGain;
 
         return [
-            'salary_income'          => $salaryIncome['total'] ?? 0,
+            'salary_income'         => $salaryIncome,
+            'capital_gain'          => $capitalGain,
             'total'                 => $total
         ];
 
