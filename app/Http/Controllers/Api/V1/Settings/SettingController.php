@@ -143,9 +143,9 @@ class SettingController extends Controller
                             'id',
                             'name_of_company as name',
                             DB::raw('
-                                (closing_no_of_shares * cost_per_share) 
-                                + (purchased_no_of_shares * purchased_cost_per_share) 
-                                - (sold_no_of_shares * sold_cost_per_share) 
+                                (closing_no_of_shares * cost_per_share)
+                                + (purchased_no_of_shares * purchased_cost_per_share)
+                                - (sold_no_of_shares * sold_cost_per_share)
                                 AS amount'
                         ),
                         DB::raw('"marketShare" as type')
