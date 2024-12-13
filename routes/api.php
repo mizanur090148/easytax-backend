@@ -204,6 +204,13 @@ Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::patch('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'update']);
     Route::delete('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'destroy']);
 
+    Route::get('/assessment-years', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'index']);
+    Route::post('/assessment-years', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'store']);
+    Route::patch('/assessment-years/{id}', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'update']);
+    Route::delete('/assessment-years/{id}', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'destroy']);
+
+
+
     // Drodowns
     Route::get('/dropdown', [SettingController::class, 'dropdown']);
     Route::get('/complex-dropdown', [SettingController::class, 'complexDropdown']);
