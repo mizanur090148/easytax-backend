@@ -43,6 +43,15 @@ class SettingRequest extends FormRequest
                         if ($existingActive) {
                             $fail('Only one "assessment-year" can have status 1.');
                         }
+                    } else if ($value == 1 && $this->input('type') === 'income-year') {
+                        $existingActive = Setting::where('type', 'income-year')
+                            ->where('status', 1)
+                            ->where('id', '!=', $this->route('id')) // Ignore current record during update
+                            ->exists();
+
+                        if ($existingActive) {
+                            $fail('Only one "income-year" can have status 1.');
+                        }
                     }
                 }
             ],

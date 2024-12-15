@@ -78,4 +78,16 @@ class AssessmentYearController extends Controller
             return responseCantProcess($e);
         }
     }
+
+    /**
+     * @return JsonResponse|\JsonResponse
+     */
+    public function incomeAndAssessment()
+    {
+        try {
+            return responseSuccess($this->repository->incomeAndAssessment());
+        } catch (Exception $e) {
+            return responseCantProcess($e);
+        }
+    }
 }
