@@ -18,10 +18,19 @@ use App\Http\Controllers\Api\V1\FinanceExpenseController;
 use App\Http\Controllers\Api\V1\TransportExpenseController;
 use App\Http\Controllers\Api\V1\EducationExpenseController;
 use App\Http\Controllers\Api\V1\VacationFestivalExpenseController;
+use App\Http\Controllers\Api\V1\SavingsPlanController;
+use App\Http\Controllers\Api\V1\NonInstitutionalLiabilitiesController;
+use App\Http\Controllers\Api\V1\GovSecuritiesController;
+use App\Http\Controllers\Api\V1\InstitutionalLiabilitiesController;
+use App\Http\Controllers\Api\V1\OtherLiabilitiesController;
+use App\Http\Controllers\Api\V1\ListedSecuritiesController;
+use App\Http\Controllers\Api\V1\RetirementPlanController;
+use App\Http\Controllers\Api\V1\PartnershipBusinessController;
 use App\Http\Controllers\Api\V1\TotalDataController;
 use App\Http\Controllers\Api\V1\AssetEntries\AgriNonAgriLandController;
 use App\Http\Controllers\Api\V1\Settings\SettingController;
 use App\Http\Controllers\Api\V1\Settings\TypeOfPropertyController;
+use App\Http\Controllers\Api\V1\Settings\AssessmentYearController;
 
 // Auth routes with 'auth:api' middleware applied where necessary
 Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
@@ -99,17 +108,17 @@ Route::middleware('api')->group(function () {
     Route::patch('/finance-expenses/{id}',  [FinanceExpenseController::class, 'update']);
 
     //liabilities entry
-    Route::get('/institutional-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\InstitutionalLiabilitiesController::class, 'index']);
-    Route::post('/institutional-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\InstitutionalLiabilitiesController::class, 'storeOrUpdate']);
-    Route::delete('/institutional-liabilities/{id}', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\InstitutionalLiabilitiesController::class, 'destroy']);
+    Route::get('/institutional-liabilities', [InstitutionalLiabilitiesController::class, 'index']);
+    Route::post('/institutional-liabilities', [InstitutionalLiabilitiesController::class, 'storeOrUpdate']);
+    Route::delete('/institutional-liabilities/{id}', [InstitutionalLiabilitiesController::class, 'destroy']);
 
-    Route::get('/non-institutional-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\NonInstitutionalLiabilitiesController::class, 'index']);
-    Route::post('/non-institutional-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\NonInstitutionalLiabilitiesController::class, 'storeOrUpdate']);
-    Route::delete('/non-institutional-liabilities/{id}', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\NonInstitutionalLiabilitiesController::class, 'destroy']);
+    Route::get('/non-institutional-liabilities', [NonInstitutionalLiabilitiesController::class, 'index']);
+    Route::post('/non-institutional-liabilities', [NonInstitutionalLiabilitiesController::class, 'storeOrUpdate']);
+    Route::delete('/non-institutional-liabilities/{id}', [NonInstitutionalLiabilitiesController::class, 'destroy']);
 
-    Route::get('/other-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\OtherLiabilitiesController::class, 'index']);
-    Route::post('/other-liabilities', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\OtherLiabilitiesController::class, 'storeOrUpdate']);
-    Route::delete('/other-liabilities/{id}', [\App\Http\Controllers\Api\V1\LiabilitiesEntry\OtherLiabilitiesController::class, 'destroy']);
+    Route::get('/other-liabilities', [OtherLiabilitiesController::class, 'index']);
+    Route::post('/other-liabilities', [OtherLiabilitiesController::class, 'storeOrUpdate']);
+    Route::delete('/other-liabilities/{id}', [OtherLiabilitiesController::class, 'destroy']);
 
 
     Route::get('/transport-expenses',  [TransportExpenseController::class, 'index']);
@@ -124,32 +133,32 @@ Route::middleware('api')->group(function () {
     Route::post('/vacation-festival-expenses',  [VacationFestivalExpenseController::class, 'store']);
     Route::patch('/vacation-festival-expenses/{id}',  [VacationFestivalExpenseController::class, 'update']);
 
-    Route::get('/savings-plan',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'index']);
-    Route::post('/savings-plan',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'store']);
-    Route::patch('/savings-plan/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'update']);
-    Route::delete('/savings-plan/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\SavingsPlanController::class, 'destroy']);
+    Route::get('/savings-plan',  [SavingsPlanController::class, 'index']);
+    Route::post('/savings-plan',  [SavingsPlanController::class, 'store']);
+    Route::patch('/savings-plan/{id}',  [SavingsPlanController::class, 'update']);
+    Route::delete('/savings-plan/{id}', [SavingsPlanController::class, 'destroy']);
 
 
-    Route::get('/gov-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'index']);
-    Route::post('/gov-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'store']);
-    Route::patch('/gov-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'update']);
-    Route::delete('/gov-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\GovSecuritiesController::class, 'destroy']);
+    Route::get('/gov-securities',  [GovSecuritiesController::class, 'index']);
+    Route::post('/gov-securities',  [GovSecuritiesController::class, 'store']);
+    Route::patch('/gov-securities/{id}',  [GovSecuritiesController::class, 'update']);
+    Route::delete('/gov-securities/{id}', [GovSecuritiesController::class, 'destroy']);
 
 
-    Route::get('/listed-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'index']);
-    Route::post('/listed-securities',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'store']);
-    Route::patch('/listed-securities/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'update']);
-    Route::delete('/listed-securities/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\ListedSecuritiesController::class, 'destroy']);
+    Route::get('/listed-securities',  [ListedSecuritiesController::class, 'index']);
+    Route::post('/listed-securities',  [ListedSecuritiesController::class, 'store']);
+    Route::patch('/listed-securities/{id}',  [ListedSecuritiesController::class, 'update']);
+    Route::delete('/listed-securities/{id}', [ListedSecuritiesController::class, 'destroy']);
 
-    Route::get('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'index']);
-    Route::post('/retirement-plans',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'store']);
-    Route::patch('/retirement-plans/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'update']);
-    Route::delete('/retirement-plans/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\RetirementPlanController::class, 'destroy']);
+    Route::get('/retirement-plans',  [RetirementPlanController::class, 'index']);
+    Route::post('/retirement-plans',  [RetirementPlanController::class, 'store']);
+    Route::patch('/retirement-plans/{id}',  [RetirementPlanController::class, 'update']);
+    Route::delete('/retirement-plans/{id}', [RetirementPlanController::class, 'destroy']);
 
-    Route::get('/other-investments',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'index']);
-    Route::post('/other-investments',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'store']);
-    Route::patch('/other-investments/{id}',  [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'update']);
-    Route::delete('/other-investments/{id}', [\App\Http\Controllers\Api\V1\investmentCredit\OtherInvestmentController::class, 'destroy']);
+    Route::get('/other-investments',  [OtherInvestmentController::class, 'index']);
+    Route::post('/other-investments',  [OtherInvestmentController::class, 'store']);
+    Route::patch('/other-investments/{id}',  [OtherInvestmentController::class, 'update']);
+    Route::delete('/other-investments/{id}', [OtherInvestmentController::class, 'destroy']);
 
 
     Route::get('/client-lists',  [UserController::class, 'clientList']);
@@ -158,15 +167,15 @@ Route::middleware('api')->group(function () {
     Route::delete('/client-lists/{id}', [UserController::class, 'clientDestroy']);
 
 
-    Route::get('/partnership-business',  [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'index']);
-    Route::post('/partnership-business',  [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'storeOrUpdate']);
-    Route::patch('/partnership-business/{id}',  [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'storeOrUpdate']);
-    Route::delete('/partnership-business/{id}', [\App\Http\Controllers\Api\V1\PartnershipBusinessController::class, 'destroy']);
+    Route::get('/partnership-business',  [PartnershipBusinessController::class, 'index']);
+    Route::post('/partnership-business',  [PartnershipBusinessController::class, 'storeOrUpdate']);
+    Route::patch('/partnership-business/{id}',  [PartnershipBusinessController::class, 'storeOrUpdate']);
+    Route::delete('/partnership-business/{id}', [PartnershipBusinessController::class, 'destroy']);
 
-    Route::get('/asset-outside-bd',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'index']);
-    Route::post('/asset-outside-bd',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'storeOrUpdate']);
-    Route::patch('/asset-outside-bd/{id}',  [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'storeOrUpdate']);
-    Route::delete('/asset-outside-bd/{id}', [\App\Http\Controllers\Api\V1\AssetOutsideBDController::class, 'destroy']);
+    Route::get('/asset-outside-bd',  [AssetOutsideBDController::class, 'index']);
+    Route::post('/asset-outside-bd',  [AssetOutsideBDController::class, 'storeOrUpdate']);
+    Route::patch('/asset-outside-bd/{id}',  [AssetOutsideBDController::class, 'storeOrUpdate']);
+    Route::delete('/asset-outside-bd/{id}', [AssetOutsideBDController::class, 'destroy']);
 
 });
 
@@ -204,10 +213,11 @@ Route::group(['prefix' => 'settings', 'middleware' => 'api'], function () {
     Route::patch('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'update']);
     Route::delete('/zones/{id}', [\App\Http\Controllers\Api\V1\Settings\ZoneController::class, 'destroy']);
 
-    Route::get('/assessment-years', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'index']);
-    Route::post('/assessment-years', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'store']);
-    Route::patch('/assessment-years/{id}', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'update']);
-    Route::delete('/assessment-years/{id}', [\App\Http\Controllers\Api\V1\Settings\AssessmentYearController::class, 'destroy']);
+    Route::get('/income-and-assessment', [AssessmentYearController::class, 'incomeAndAssessment']);
+    Route::get('/assessment-years', [AssessmentYearController::class, 'index']);
+    Route::post('/assessment-years', [AssessmentYearController::class, 'store']);
+    Route::patch('/assessment-years/{id}', [AssessmentYearController::class, 'update']);
+    Route::delete('/assessment-years/{id}', [AssessmentYearController::class, 'destroy']);
 
 
 

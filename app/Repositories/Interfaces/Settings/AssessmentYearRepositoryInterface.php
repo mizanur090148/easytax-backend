@@ -6,5 +6,5 @@ use App\Repositories\Interfaces\BaseRepositoryInterface;
 
 interface AssessmentYearRepositoryInterface extends BaseRepositoryInterface
 {
-
+	public function incomeAndAssessment();
 }
