@@ -177,6 +177,12 @@ Route::middleware('api')->group(function () {
     Route::patch('/asset-outside-bd/{id}',  [AssetOutsideBDController::class, 'storeOrUpdate']);
     Route::delete('/asset-outside-bd/{id}', [AssetOutsideBDController::class, 'destroy']);
 
+    // Expense entry
+    Route::get('/tax-paid-refund',  [\App\Http\Controllers\Api\V1\TaxPaidRefundController::class, 'index']);
+    Route::post('/tax-paid-refund',  [\App\Http\Controllers\Api\V1\TaxPaidRefundController::class, 'storeOrUpdate']);
+    Route::patch('/tax-paid-refund/{id}',  [\App\Http\Controllers\Api\V1\TaxPaidRefundController::class, 'storeOrUpdate']);
+    Route::delete('/tax-paid-refund/{id}', [\App\Http\Controllers\Api\V1\TaxPaidRefundController::class, 'destroy']);
+
 });
 
 Route::middleware('api')->group(function () {

@@ -7,8 +7,10 @@ use App\Repositories\AssetOutsideBDRepository;
 use App\Repositories\Interfaces\AssetOutsideBDRepositoryInterface;
 use App\Repositories\Interfaces\PartnershipBusinessRepositoryInterface;
 use App\Repositories\Interfaces\Settings\AssessmentYearRepositoryInterface;
+use App\Repositories\Interfaces\TaxPaidRefundRepositoryInterface;
 use App\Repositories\PartnershipBusinessRepository;
 use App\Repositories\Settings\AssessmentYearRepository;
+use App\Repositories\TaxPaidRefundRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\GovSecuritiesRepository;
 use App\Repositories\InstitutionalLiabilitiesRepository;
@@ -207,6 +209,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             AssessmentYearRepositoryInterface::class,
             AssessmentYearRepository::class
+        );
+        $this->app->bind(
+            TaxPaidRefundRepositoryInterface::class,
+            TaxPaidRefundRepository::class
         );
 
     }
