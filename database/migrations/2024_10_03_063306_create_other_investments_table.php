@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('ref_no')->nullable();
             $table->integer('contribution_amount')->nullable();
             $table->integer('total')->nullable();
+            
+            $table->string('year', 9)->nullable();
+            $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

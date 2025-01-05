@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('account_no')->nullable();
             $table->decimal('paid_amount')->nullable();
             $table->decimal('total')->nullable();
+           
+            $table->string('year', 9)->nullable();
+            $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

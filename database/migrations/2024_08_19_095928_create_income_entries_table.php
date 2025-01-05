@@ -28,7 +28,7 @@ return new class extends Migration
             $table->json('foreign_income')->nullable();
             $table->json('other_sources_of_income')->nullable();
             $table->json('gift_reward')->nullable();
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

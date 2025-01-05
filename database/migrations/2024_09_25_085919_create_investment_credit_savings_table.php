@@ -26,6 +26,9 @@ return new class extends Migration
             $table->float('paid_amount')->nullable();
             $table->float('allowable_limit')->nullable();
             $table->float('total')->nullable();
+            
+            $table->string('year', 9)->nullable();
+            $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

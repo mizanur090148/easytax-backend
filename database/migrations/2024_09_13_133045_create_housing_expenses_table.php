@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('repair_maintenance')->nullable();
             $table->float('service_charge')->nullable();
             
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

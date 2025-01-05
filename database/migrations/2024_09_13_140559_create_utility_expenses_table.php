@@ -26,7 +26,7 @@ return new class extends Migration
             $table->float('mobile_bill')->nullable();
             $table->float('internet_bill')->nullable();
             
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

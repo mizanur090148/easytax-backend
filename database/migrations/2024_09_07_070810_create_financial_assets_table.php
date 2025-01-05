@@ -36,7 +36,8 @@ return new class extends Migration
             $table->string('net_interest')->nullable();
             $table->string('new_contribution')->nullable();
             $table->string('net_income')->nullable();
-            $table->string('year', 4)->nullable();
+
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

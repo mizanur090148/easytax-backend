@@ -30,7 +30,7 @@ return new class extends Migration
             $table->integer('sold_no_of_shares')->nullable();
             $table->integer('sold_cost_per_share')->nullable();
 
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

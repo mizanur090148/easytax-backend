@@ -26,6 +26,9 @@ return new class extends Migration
             $table->bigInteger('withdrawal')->nullable();
             $table->bigInteger('closing_balance')->nullable();
             $table->boolean('past_return')->default(true);
+            
+            $table->string('year', 9)->nullable();
+            $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

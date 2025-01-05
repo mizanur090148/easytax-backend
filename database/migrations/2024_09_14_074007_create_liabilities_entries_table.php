@@ -35,7 +35,8 @@ return new class extends Migration
             $table->string('name_of_loan')->nullable(); // Name Of Loan
             $table->string('type')->nullable(); // Type of Loan
             $table->integer('total_closing', 15, 2)->nullable(); // Total Closing
-            $table->string('year', 4)->nullable();
+            
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

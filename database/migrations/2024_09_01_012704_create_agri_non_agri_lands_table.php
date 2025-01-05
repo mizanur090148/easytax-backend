@@ -27,7 +27,8 @@ return new class extends Migration
             $table->integer('renovation_deployment')->nullable();
             $table->integer('sale_of_portion')->nullable();
             $table->integer('cost_of_sale_portion')->nullable();
-            $table->string('year', 4)->nullable();
+
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

@@ -24,7 +24,8 @@ return new class extends Migration
             $table->integer('total_assets')->nullable();
             $table->integer('closing_liabilities')->nullable();
            // $table->integer('closing_capital')->nullable();
-            $table->year('year')->nullable();
+            
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

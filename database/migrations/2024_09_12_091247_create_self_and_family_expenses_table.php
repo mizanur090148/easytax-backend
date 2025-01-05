@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float('personal_expenses')->nullable();
             $table->float('family_expenses')->nullable();
             
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->float('garage_rent')->nullable();
             $table->float('ait_paid_on_car_renewal')->nullable();
 
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

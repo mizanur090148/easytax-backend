@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('bo_id_no')->nullable();
             $table->float('net_investment')->nullable();
             $table->float('total')->nullable();
+            
+            $table->string('year', 9)->nullable();
+            $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
