@@ -63,7 +63,7 @@ class SettingController extends Controller
 
     /**
      * @param $id
-     * @param SettingRequest $request
+     * @param SettingRequest  $request
      * @return JsonResponse
      */
     public function update($id, SettingRequest $request)
