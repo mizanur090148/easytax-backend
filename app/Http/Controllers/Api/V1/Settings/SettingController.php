@@ -23,7 +23,7 @@ class SettingController extends Controller
     protected $repository;
 
     /**
-     * SettingController constructor.
+     * constructor.
      * @param SettingRepositoryInterface $repository
      */
     public function __construct(SettingRepositoryInterface $repository)
