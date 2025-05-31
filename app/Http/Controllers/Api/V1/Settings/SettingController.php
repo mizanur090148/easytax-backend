@@ -33,7 +33,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @return JsonResponse|\JsonResponse
+     *  @return JsonResponse|\JsonResponse
      */
     public function index()
     {
