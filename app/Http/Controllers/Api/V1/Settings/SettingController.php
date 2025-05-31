@@ -77,7 +77,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @param $id
+     *  @param $id
      * @return JsonResponse|\JsonResponse
      */
     public function destroy($id)
