@@ -6,19 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class FinancialAsset extends Model
+class AssetOutsideBD extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
+        'name_of_asset',
+        'country_of_asset',
+        'closing_amount_in_bd',
         'type',
-        'account_no',
-        'name_of_person',
-        'etin_no',
-        'closing_amount',
-        'year',
-        'past_return',
-        'asset_type'
+        'opening_balance',
+        'new_investment',
+        'withdrawal',
+        'closing_balance',
+        'past_return'
     ];
 }

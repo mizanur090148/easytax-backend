@@ -8,6 +8,7 @@ use App\Http\Requests\Settings\SettingRequest;
 use App\Services\DropdownService;
 use App\Models\Settings\Setting;
 use App\Models\AssetEntries\AgriNonAgriLand;
+use App\Models\DirectoryShare;
 use App\Models\MotorVehicle;
 use App\Models\BusinessAsset;
 use App\Models\Jewellery;
@@ -117,27 +118,66 @@ class SettingController extends Controller
                         ->whereIn('agri_non_agri_lands.type', ['agri', 'non-agri'])
                         ->select('settings.id','settings.name','agri_non_agri_lands.net_value_of_property')
                         ->get();
+                case 'saleLand':
+                    $result = AgriNonAgriLand::join('settings', 'agri_non_agri_lands.property_type_id', '=','settings.id')
+                        ->where('agri_non_agri_lands.past_return', 1)
+                        ->select(
+                            'settings.id',
+                            'settings.name',
+                            'settings.type',
+                            'agri_non_agri_lands.type as asset_type',
+                            'agri_non_agri_lands.net_value_of_property as amount'
+                        )->get();
                     break;
-                case 'capitalGainFromCapitalMarket':
-                    $result = BusinessAsset::where('past_return', 1)->pluck('name_of_business','id');
+                case 'saleShare':
+                    $businessAssets = BusinessAsset::where('past_return', 1)
+                        ->select(
+                            'id',
+                            'name_of_business as name',
+                            DB::raw('total_assets - closing_liabilities AS amount'),
+                            DB::raw('"business" as type')
+                        )->get();
+                    $directoryShares = DirectoryShare::where('past_return', 1)
+                        ->select(
+                            'id',
+                            'name_of_company as name',
+                            DB::raw('
+                                (closing_no_of_shares * cost_per_share)
+                                + (purchased_no_of_shares * purchased_cost_per_share)
+                                - (sold_no_of_shares * sold_cost_per_share)
+                                AS amount'
+                        ),
+                        DB::raw('"marketShare" as type')
+                        )
+                    ->get();
+                    $result = $businessAssets->merge($directoryShares);
                     break;
-                case 'capitalGainFromOtherAssets':
-                    $motorVehicles = MotorVehicle::with('propertyType:id,name')
-                        ->where('past_return', 1)
-                        ->get()
-                        ->pluck('propertyType.name','propertyType.id')
-                        ->toArray();
-                    $jewelleries = Jewellery::with('propertyType:id,name')
-                        ->where('past_return', 1)
-                        ->get()
-                        ->pluck('propertyType.name','propertyType.id')
-                        ->toArray();
-                    $furnitureEquipments = FurnitureEquipment::with('propertyType:id,name')
-                        ->where('past_return', 1)
-                        ->get()
-                        ->pluck('propertyType.name','propertyType.id')
-                        ->toArray();
-                    $result = $motorVehicles + $jewelleries + $furnitureEquipments;
+                case 'otherAssets':
+                    $motorVehicles = MotorVehicle::join('settings', 'motor_vehicles.type_id', '=','settings.id')
+                        ->where('motor_vehicles.past_return', 1)
+                        ->select(
+                            'settings.id',
+                            'settings.name',
+                            'settings.type',
+                            'motor_vehicles.cost_with_registration as amount'
+                        )->get();
+                    $jewelleries = Jewellery::join('settings', 'jewelleries.type_id', '=','settings.id')
+                        ->where('jewelleries.past_return', 1)
+                        ->select(
+                            'settings.id',
+                            'settings.name',
+                            'settings.type',
+                            'jewelleries.closing_value as amount'
+                        )->get();
+                    $furnitureEquipments = FurnitureEquipment::join('settings', 'furniture_equipments.type_id', '=','settings.id')
+                        ->where('furniture_equipments.past_return', 1)
+                        ->select(
+                            'settings.id',
+                            'settings.name',
+                            'settings.type',
+                            'furniture_equipments.closing_value as amount'
+                        )->get();
+                    $result = $motorVehicles->merge($jewelleries)->merge($furnitureEquipments);
                     break;
             }
             return responseSuccess($result);

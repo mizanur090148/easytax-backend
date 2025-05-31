@@ -23,9 +23,14 @@ return new class extends Migration
             $table->date('incorporation_date')->nullable();
             $table->integer('closing_no_of_shares')->nullable();
             $table->integer('cost_per_share')->nullable();
-            //$table->integer('total_closing_value')->nullable();
 
-            $table->string('year', 4)->nullable();
+            $table->integer('purchased_no_of_shares')->nullable();
+            $table->integer('purchased_cost_per_share')->nullable();
+
+            $table->integer('sold_no_of_shares')->nullable();
+            $table->integer('sold_cost_per_share')->nullable();
+
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

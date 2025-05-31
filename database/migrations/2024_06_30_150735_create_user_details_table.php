@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('nid')->nullable();
             $table->string('passport_no')->nullable();
             $table->string('email')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('signature')->nullable();
             $table->integer('bangla_boboborsho_allowance')->nullable();
             $table->integer('total_cost')->nullable();
             $table->integer('interest_receivable_on_provident_fund')->nullable();
@@ -53,8 +55,8 @@ return new class extends Migration
             $table->string('residential_status')->nullable();
             $table->integer('tax_payer_location_id')->nullable();
             $table->string('old_tin')->nullable();
-            $table->integer('old_circle_id')->nullable();
-            $table->integer('old_zone_id')->nullable();
+            $table->string('old_circle_id')->nullable();
+            $table->string('old_zone_id')->nullable();
             // family profile
             $table->string('marital_status')->nullable();
             $table->string('spouse_name')->nullable();

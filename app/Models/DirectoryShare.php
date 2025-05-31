@@ -17,8 +17,18 @@ class DirectoryShare extends Model
         'incorporation_date',
         'closing_no_of_shares',
         'cost_per_share',
-        //'total_closing_value',
+        'purchased_no_of_shares',
+        'purchased_cost_per_share',
+        'sold_no_of_shares',
+        'sold_cost_per_share',
         'year',
         'past_return'
     ];
+
+    public function getTotalClosingValueAttribute() 
+    {
+        return $this->closing_no_of_shares * $this->cost_per_share 
+            + $this->purchased_no_of_shares * $this->purchased_cost_per_share
+            - $this->sold_no_of_shares * $this->sold_cost_per_share;
+    }
 }

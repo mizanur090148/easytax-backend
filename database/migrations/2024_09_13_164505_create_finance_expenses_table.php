@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('non_institutional_loan')->nullable();
             $table->float('other_loan')->nullable();
 
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

@@ -26,7 +26,8 @@ return new class extends Migration
             $table->integer('cost_with_registration')->nullable();
             $table->integer('cost_of_sale')->nullable();
             $table->integer('closing_cost')->nullable();
-            $table->string('year', 4)->nullable();
+
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

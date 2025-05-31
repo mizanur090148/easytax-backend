@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Settings\Setting;
 use App\Models\User;
 use Validator, DB;
 
@@ -51,9 +52,20 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        $assessmentYear = Setting::where([
+            "type" => "assessment-year",
+            "status" => 1
+        ])->first();
 
         $result = auth()->user()->load('userDetail');
         $result['token'] = $token;
+
+        $user = auth()->user()->load(
+            'userDetail',
+            'userDetail.circle:id,name',
+            'userDetail.zone:id,name',
+            'userDetail.taxPayerLocation:id,name'
+        );
 
         return response()->json([
             'meta' => [
@@ -62,7 +74,8 @@ class AuthController extends Controller
                 'message' => 'Login successful.',
             ],
             'data' => [
-                'user' => auth()->user()->load('userDetail'),
+                'user' => $user,
+                'assessmentYear' => $assessmentYear,
                 'access_token' => [
                     'token' => $token,
                     'type' => 'Bearer',

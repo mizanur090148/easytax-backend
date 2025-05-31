@@ -31,7 +31,7 @@ return new class extends Migration
             $table->integer('opening_qty')->nullable();
             $table->integer('opening_value')->nullable();
 
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

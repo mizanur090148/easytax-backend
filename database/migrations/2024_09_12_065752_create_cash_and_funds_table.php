@@ -29,7 +29,7 @@ return new class extends Migration
             $table->integer('closing_balance')->nullable();
             $table->integer('cash_in_hand')->nullable();
            
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

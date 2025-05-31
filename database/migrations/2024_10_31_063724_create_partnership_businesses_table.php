@@ -22,6 +22,9 @@ return new class extends Migration
             $table->bigInteger('closing_capital')->nullable();
             $table->string('business_etin')->nullable();
             $table->boolean('past_return')->default(true);
+            
+            $table->string('year', 9)->nullable();
+            $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

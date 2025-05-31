@@ -25,10 +25,36 @@ class SettingRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 
+                'required',
                 'max:30',
                 new UniqueCheck(Setting::class)
-            ]
+            ],
+            'status' => [
+                'nullable',
+                'integer',
+                'in:0,1', // Ensures status can only be 0 or 1
+                function ($attribute, $value, $fail) {
+                    if ($value == 1 && $this->input('type') === 'assessment-year') {
+                        $existingActive = Setting::where('type', 'assessment-year')
+                            ->where('status', 1)
+                            ->where('id', '!=', $this->route('id')) // Ignore current record during update
+                            ->exists();
+
+                        if ($existingActive) {
+                            $fail('Only one "assessment-year" can have status 1.');
+                        }
+                    } else if ($value == 1 && $this->input('type') === 'income-year') {
+                        $existingActive = Setting::where('type', 'income-year')
+                            ->where('status', 1)
+                            ->where('id', '!=', $this->route('id')) // Ignore current record during update
+                            ->exists();
+
+                        if ($existingActive) {
+                            $fail('Only one "income-year" can have status 1.');
+                        }
+                    }
+                }
+            ],
         ];
     }
 }

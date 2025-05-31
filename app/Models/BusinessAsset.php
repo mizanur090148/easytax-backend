@@ -17,8 +17,20 @@ class BusinessAsset extends Model
         'address',
         'total_assets',
         'closing_liabilities',
-       // 'closing_capital',
         'year',
         'past_return'
     ];
+
+    protected $appends = [
+        'closing_capital'
+    ];
+
+    protected $dates = [
+        'deleted_at'
+    ];
+
+    public function getClosingCapitalAttribute()
+    {
+        return $this->total_assets - $this->closing_liabilities;
+    }
 }

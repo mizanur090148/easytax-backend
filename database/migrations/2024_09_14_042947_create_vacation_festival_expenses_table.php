@@ -26,7 +26,7 @@ return new class extends Migration
             $table->float('anniversary_expense')->nullable();
             $table->float('birthday_expense')->nullable();
 
-            $table->string('year', 4)->nullable();
+            $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
             $table->softDeletes();
             $table->timestamps();

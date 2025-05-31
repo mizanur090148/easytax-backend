@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('user_details', function (Blueprint $table) {
-            $table->string('picture')->nullable();
-            $table->string('signature')->nullable();
+        Schema::create('assessment_years', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->boolean('status')->default(true);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -22,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('user_details', function (Blueprint $table) {
-            $table->dropColumn('picture');
-            $table->dropColumn('signature');
-        });
+        Schema::dropIfExists('assessment_years');
     }
 };

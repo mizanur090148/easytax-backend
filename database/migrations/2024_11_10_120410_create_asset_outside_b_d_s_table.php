@@ -11,21 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('investment_credit_savings', function (Blueprint $table) {
+        Schema::create('asset_outside_b_d_s', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->enum('type', ['insurance', 'deposit'])->default('insurance');
-            $table->string('policy_number')->nullable();
-            $table->float('insured_amount')->nullable();
-            $table->float('current_year_amount')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('account_no')->nullable();
-            $table->float('paid_amount')->nullable();
-            $table->float('allowable_limit')->nullable();
-            $table->float('total')->nullable();
+            $table->string('name_of_asset')->nullable();
+            $table->bigInteger('country_of_asset')->nullable();
+            $table->bigInteger('closing_amount_in_bd')->nullable();
+            $table->string('type')->nullable();
+            $table->bigInteger('opening_balance')->nullable();
+            $table->bigInteger('new_investment')->nullable();
+            $table->bigInteger('withdrawal')->nullable();
+            $table->bigInteger('closing_balance')->nullable();
+            $table->boolean('past_return')->default(true);
             
             $table->string('year', 9)->nullable();
             $table->boolean('past_return')->default(false);
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('investment_credit_savings');
+        Schema::dropIfExists('asset_outside_b_d_s');
     }
 };

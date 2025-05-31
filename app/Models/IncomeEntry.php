@@ -23,6 +23,8 @@ class IncomeEntry extends Model
         'foreign_income',
         'other_sources_of_income',
         'gift_reward',
+        'year',
+        'past_return'
     ];
 
     protected $casts = [
